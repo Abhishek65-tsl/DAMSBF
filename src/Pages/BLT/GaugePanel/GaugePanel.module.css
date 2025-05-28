@@ -1,0 +1,8 @@
+
+/* src/components/GaugePanel/GaugePanel.module.css */
+.panel {
+    display: grid;
+    grid-template-rows: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  
