@@ -6,7 +6,7 @@ function BLT() {
 
     // === mock data ===
 const data = {
-    imageSrc: 'D:\Source Code\KPODAMS React\KPODAMS_UI\src\assets\Images\BLT.png',
+    imageSrc: 'D:/Source Code/KPODAMS React/KPODAMS_UI/src/assets/Images/BLT.png',
     parameters: [
         { name: 'Temperature', value: 72.5, unit: '°F', ucl: 80, lcl: 65 },
     { name: 'Pressure', value: 14.7, unit: 'psi', ucl: 15.5, lcl: 14.0 },

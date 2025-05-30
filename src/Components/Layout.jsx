@@ -63,7 +63,7 @@ const Drawer = styled('div', { shouldForwardProp: (prop) => prop !== 'open' })(
   })
 );
 
-function Layout({ children }) {
+function Layout() {
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {

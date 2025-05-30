@@ -40,7 +40,7 @@ function Sidebar({ collapsed }) {
 
   return (
     <List>
-      {menuItems.map((item, index) => (
+      {menuItems.map((item) => (
         <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
           <ListItemButton
             component={Link}
