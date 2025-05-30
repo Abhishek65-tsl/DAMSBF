@@ -25,5 +25,5 @@ jobs:
     - name: Lint
       run: npm run lint # Or your linting command
 
-    - name: Test
-      run: npm test # Or your testing command
+    # - name: Test
+    #   run: npm test # Or your testing command

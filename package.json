@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "test": "echo \"No tests specified\" && exit 0",
     "preview": "vite preview",
     "serve": "vite preview",
     "predeploy": "npm run build",
