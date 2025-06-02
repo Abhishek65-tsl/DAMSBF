@@ -1,0 +1,35 @@
+name: Development CI
+
+on:
+  push:
+    branches: [ development ]
+  pull_request:
+    branches: [ development ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Lint
+      run: npm run lint # Or your linting command
+
+    # Uncomment when you have tests
+    # - name: Test
+    #   run: npm test
+      
+    - name: Build
+      run: npm run build
+      
+    # Optional: Add a step to deploy to a development environment if needed

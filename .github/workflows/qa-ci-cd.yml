@@ -1,0 +1,42 @@
+name: QA CI/CD
+
+on:
+  push:
+    branches: [ qa ]
+  pull_request:
+    branches: [ qa ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Lint
+      run: npm run lint
+      
+    # Uncomment when you have tests
+    # - name: Test
+    #   run: npm test
+      
+    - name: Build
+      run: npm run build
+      
+    # Optional: Deploy to QA environment
+    # For example, you could deploy to a separate GitHub Pages site or other hosting
+    # - name: Deploy to QA Environment
+    #   uses: peaceiris/actions-gh-pages@v3
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     publish_dir: ./dist # Or your build output directory
+    #     destination_dir: qa # Create a subdirectory for QA deployments
