@@ -8,6 +8,11 @@ import GaugePanel from './GaugePanel/GaugePanel';
 export default function Dashboard({ data }) {
   return (
     <div className={styles.grid}>
+        <div>
+        <h2><b> 
+            MAKING MASTER PAGE
+            </b></h2>   
+        </div>
       <ParameterList parameters={data.parameters} />
       <AssetImage src={data.imageSrc} alt="Machine asset" />
       <ParameterList parameters={data.parameters} />
