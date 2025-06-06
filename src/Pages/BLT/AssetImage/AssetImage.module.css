@@ -14,9 +14,11 @@
     overflow: hidden;
   }
   .image {
-   height: 100%;
-   width: 100%;
-   padding: 15px;
-  }
-  
+  max-width: 300px;   /* Or any size like 100%, 50%, etc. */
+  width: 100%;
+  height: auto;       /* Keeps aspect ratio */
+  padding: 15px;
+  object-fit: contain;  /* Ensures image scales nicely inside box */
+}
+
   
