@@ -4,15 +4,17 @@ import About from './Pages/About';
 import NotFound from './Pages/NotFound';
 import Layout from './Components/Layout';
 import BLT from './Pages/BLT';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route path="home" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="BLT" element={<BLT />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
