@@ -1,5 +1,5 @@
 // src/routes/routes.jsx
-import Home from '../Pages/About';
+import Home from '../Pages/Home';
 import BLT from '../Pages/BLT';
 import About from '../Pages/About';
 // import Dashboard from '../pages/Dashboard';
@@ -14,10 +14,10 @@ const routes = [
     path: '/BLT',
     element: <BLT />,
   },
-//   {
-//     path: '/dashboard',
-//     element: <Dashboard />,
-//   },
+  {
+    path: '/about',
+    element: <About />,
+  },
   {
     path: '*',
     element: <NotFound />,
