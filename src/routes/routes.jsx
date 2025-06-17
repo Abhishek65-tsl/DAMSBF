@@ -1,8 +1,6 @@
-// src/routes/routes.jsx
-import Home from '../Pages/About';
-import BLT from '../Pages/BLT';
+import Home from '../Pages/Home';
+import Dashboard from '../Pages/BLT/Dashboard';
 import About from '../Pages/About';
-// import Dashboard from '../pages/Dashboard';
 import NotFound from '../Pages/NotFound';
 
 const routes = [
@@ -12,12 +10,12 @@ const routes = [
   },
   {
     path: '/BLT',
-    element: <BLT />,
+    element: <Dashboard />, // Directly load the dashboard at /BLT
   },
-//   {
-//     path: '/dashboard',
-//     element: <Dashboard />,
-//   },
+  {
+    path: '/about',
+    element: <About />,
+  },
   {
     path: '*',
     element: <NotFound />,
