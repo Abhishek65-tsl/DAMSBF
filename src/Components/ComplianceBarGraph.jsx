@@ -12,8 +12,10 @@ const ComplianceBarGraph = ({ value = 73 }) => {
       style={{
         width: 250,
         height: 200,
+          marginTop: '-20px',       // ← move down (negative like "-10px" to move up)
+          marginLeft: '80px',      // ← move right (negative to move left)
         border: '0px solid #ccc',
-        padding: '20px',
+        padding: '10px',
         boxSizing: 'none',
         fontFamily: 'sans-serif',
         userSelect: 'none',

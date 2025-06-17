@@ -7,8 +7,8 @@ const Particle = ({ delay }) => (
   <motion.div
     style={{
       position: "absolute",
-      top: "13%", // Center vertically
-      left: "72%", // Center horizontally
+      top: "30%", // Center vertically
+      left: "63%", // Center horizontally
       width: 9,
       height: 9,
       borderRadius: "50%",
@@ -17,8 +17,8 @@ const Particle = ({ delay }) => (
     }}
     initial={{ x: 0, y: 0, opacity: 1 }}
     animate={{
-      x: [33,33, 130],   // L-shape: go down, then right
-      y: [90, 245, 310],
+      x: [0,0, 50],   // L-shape: go down, then right
+      y: [0,106,180],
       opacity: [1, 0.5, 0],
     }}
     transition={{
