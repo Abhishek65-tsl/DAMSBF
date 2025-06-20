@@ -1,10 +1,10 @@
 // src/Components/Particles/ParticleAnimation.jsx
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 // A single particle with L-shape motion
 const Particle = ({ delay }) => (
-  <motion.div
+  <Motion.div
     style={{
       position: "absolute",
       top: "30%", // Center vertically
