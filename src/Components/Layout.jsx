@@ -37,9 +37,10 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  position: 'fixed', // Make the AppBar fixed
+  position: 'fixed',
+  zIndex: theme.zIndex.drawer + 1, // Ensure AppBar is above Drawer
   ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
+    width: `calc(100% - 0px)`,
     marginLeft: `${drawerWidth}px`,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
@@ -47,6 +48,7 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
+
 
 const Drawer = styled('div', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -60,6 +62,9 @@ const Drawer = styled('div', { shouldForwardProp: (prop) => prop !== 'open' })(
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginTop: '64px', // Position the sidebar below the fixed AppBar
+    height: 'calc(100vh - 64px)', 
+    backgroundColor: theme.palette.background.paper,
+
   })
 );
 

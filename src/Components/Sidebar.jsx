@@ -1,12 +1,22 @@
 // src/components/Sidebar.jsx
 import React from 'react';
-import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, styled } from '@mui/material';
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  styled,
+} from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
-const StyledListItemText = styled(ListItemText)(({ collapsed }) => ({
+// Prevent 'collapsed' from being passed to the DOM
+const StyledListItemText = styled(({ collapsed, ...rest }) => (
+  <ListItemText {...rest} />
+))(({ collapsed }) => ({
   display: collapsed ? 'none' : 'block',
 }));
 
@@ -15,10 +25,10 @@ function Sidebar({ collapsed }) {
 
   const menuItems = [
     {
-        text: 'BLT',
-        path: '/BLT',
-        icon: <InfoIcon />,
-      },
+      text: 'BLT',
+      path: '/BLT',
+      icon: <InfoIcon />,
+    },
     {
       text: 'Charging System',
       path: '/Charging System',
@@ -29,13 +39,11 @@ function Sidebar({ collapsed }) {
       path: '/about',
       icon: <InfoIcon />,
     },
- 
     {
       text: 'Dashboard',
       path: '/dashboard',
       icon: <DashboardIcon />,
     },
-    // Add more menu items as needed
   ];
 
   return (

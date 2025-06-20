@@ -1,7 +1,7 @@
 // src/components/Dashboard.jsx
 import React from 'react';
 import styles from './Dashboard.module.css';
-import AssetImage from './AssetImage/AssetImage';
+// import AssetImage from './AssetImage/AssetImage';
 import ParameterList from './ParameterList/ParameterList';
 import GaugePanel from './GaugePanel/GaugePanel';
 
