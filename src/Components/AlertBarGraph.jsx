@@ -10,17 +10,20 @@ const AlertBarGraph = ({
   maxValue = 10,
 }) => {
   return (
-    <div className="flex-col w-full h-full mt-1 p-1 font-sans select-none">
-      {/* Y-axis Label */}
-      {/* <div className="relative">
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 -rotate-90 origin-left text-sm font-semibold text-gray-700 whitespace-nowrap">
-          No. of Open Alerts
-        </div>
-      </div> */}
+    <div
+      className="flex-col font-sans select-none"
+      style={{
+        width: "250px",       // ← Change width here
+        height: "150px",      // ← Change height here
+        marginTop: "-30px",    // ← Move down (use negative value like -10px to move up)
+        // marginBottom: "10px", // ← Optional: to move it further down
+      }}
+    >
       {/* X-axis Label */}
       <div className="mt-6 text-center font-bold text-gray-700">Alert Section</div>
+
       {/* Graph Area */}
-      <div className="mt-0.5 flex items-end gap-4 h-48 pl-6 pr-4 relative">
+      <div className="mt-0.5 flex items-end gap-4 h-[80%] pl-6 pr-4 relative">
         {/* Y-axis Line */}
         <div className="absolute left-6 bottom-0 w-0.5 h-full bg-gray-800 z-0" />
         {/* X-axis Line */}
@@ -60,8 +63,6 @@ const AlertBarGraph = ({
           </div>
         ))}
       </div>
-
-      
     </div>
   );
 };
