@@ -1,0 +1,11 @@
+/* src/components/Dashboard.module.css */
+.grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1fr 0.9fr 1fr; /* labels / image / gauges */
+    gap: 1rem;
+    height: 100vh;
+    padding: 1rem;
+    background: #f5f7fa;
+  }
+  
+  
