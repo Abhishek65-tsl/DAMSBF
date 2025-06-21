@@ -17,8 +17,8 @@ const Particle = ({ delay }) => (
     }}
     initial={{ x: 0, y: 0, opacity: 1 }}
     animate={{
-      x: [0,0, 50],   // L-shape: go down, then right
-      y: [0,106,180],
+      x: [25,25, 55],   // L-shape: go down, then right
+      y: [0,126,180],
       opacity: [1, 0.5, 0],
     }}
     transition={{
