@@ -17,4 +17,4 @@ const HealthBar = ({ percentage }) => {
   );
 };
 
-export default HealthBar;
+export default HealthBar;

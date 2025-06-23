@@ -9,7 +9,8 @@ const InfoCardComponent = ({
   backgroundColor = null,
   titleColor = "text-gray-600",
   amountColor = "text-black",
-  size = "normal"
+  size = "normal",
+  onClick
 }) => {
   const getBackgroundColor = () => {
     if (backgroundColor) return backgroundColor;
@@ -34,17 +35,52 @@ const InfoCardComponent = ({
   const titleSize = size === "small" ? "text-xs" : "text-sm";
   const amountSize = size === "small" ? "text-lg" : "text-xl";
 
+  // Calculate progress for the bar
+  let progressPercentage = 0;
+  if (ucl !== null && lcl !== null && ucl > lcl) {
+    progressPercentage = ((value - lcl) / (ucl - lcl)) * 100;
+    if (progressPercentage < 0) progressPercentage = 0;
+    if (progressPercentage > 100) progressPercentage = 100;
+  } else if (ucl !== null && value <= ucl) {
+    // Fallback if only UCL is meaningful for a percentage (e.g., 0 to UCL)
+    progressPercentage = (value / ucl) * 100;
+    if (progressPercentage < 0) progressPercentage = 0;
+    if (progressPercentage > 100) progressPercentage = 100;
+  }
+
   return (
     <div 
       className={`rounded-lg ${cardSize} shadow-sm border border-gray-200 hover:shadow-md transition-shadow`}
-      style={{ backgroundColor: getBackgroundColor() }}
+      style={{ backgroundColor: getBackgroundColor() }} onClick={onClick}
     >
-      <h3 className={`${titleColor} ${titleSize} font-medium mb-1`}>
+      <h3 className={`${titleColor} ${titleSize} font-medium mb-0.5`}>
         {title}
       </h3>
-      <div className={`${amountColor} ${amountSize} font-bold`}>
+      <div className={`${amountColor} ${amountSize}   font-semibold`}>
         {amount}
       </div>
+      {(ucl !== null || lcl !== null) && (
+        <div className="mt-0.5">
+          <div className="flex justify-between text-xs text-gray-500 mb-0.5">
+            <span>Progress</span>
+            <span>{progressPercentage.toFixed(0)}%</span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-1">
+            <div
+              className="h-1 rounded-full"
+              style={{
+                width: `${progressPercentage}%`,
+                backgroundColor: 
+                  value >= lcl && value <= ucl
+                    ? '#10B981' // Green for within limits
+                    : value > ucl || value < lcl
+                    ? '#EF4444' // Red for outside limits
+                    : '#F59E0B' // Yellow for other cases (e.g., close to limits or default)
+              }}
+            ></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

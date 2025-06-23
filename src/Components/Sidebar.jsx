@@ -14,9 +14,12 @@ import InfoIcon from '@mui/icons-material/Info';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
 // Prevent 'collapsed' from being passed to the DOM
-const StyledListItemText = styled(({ collapsed, ...rest }) => (
-  <ListItemText {...rest} />
-))(({ collapsed }) => ({
+const StyledListItemText = styled(ListItemText, {
+  shouldForwardProp: (prop) => prop !== 'collapsed',
+})(({ collapsed }) => ({
+  display: collapsed ? 'none' : 'block',
+}));
+(({ collapsed }) => ({
   display: collapsed ? 'none' : 'block',
 }));
 

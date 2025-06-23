@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }  from "react";
 import InfoCardComponent from "../../Components/InfoCardComponent";
 import AlertCard from "../../Components/AlertCard";
 import ParticleAnimation from "../../Components/Particle/ParticleAnimation";
@@ -8,8 +8,23 @@ import ComplianceBarGraph from "../../Components/ComplianceBarGraph";
 import VisualizationPanel from "../../Components/VisualizationPanel";
 import AlertSummaryBox from "../../Components/AlertSummaryBox";
 import OperationMaintenanceTable from "../../Components/OperationMaintenanceTable";
+import TrendAnalysisModal from "../../Components/TrendAnalysisModal";
 
 const IndustrialDashboard = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedParameter, setSelectedParameter] = useState(null);
+
+  const handleCardClick = (parameter) => {
+    console.log("Card clicked:", parameter);
+    setSelectedParameter(parameter);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedParameter(null);
+  };
+
   const parameters = [
     { title: "Wind Volume(Nm³/hr)", amount: "33629.1", value: 33629.1, ucl: 35000, lcl: 30000 },
     { title: "HBT", amount: "5.5°C", value: 5.5, ucl: 5.0, lcl: -2.0 },
@@ -42,7 +57,7 @@ const IndustrialDashboard = () => {
             </h2>
             <div className="space-y-1.5">
               {parameters.slice(0, 7).map((param, index) => (
-                <InfoCardComponent key={index} {...param} size="small" />
+                <InfoCardComponent key={index} {...param} size="small" onClick={() => handleCardClick(param)} />
               ))}
             </div>
           </div>
@@ -56,20 +71,20 @@ const IndustrialDashboard = () => {
             </div>
 
             <div className="bg-white  p-1">
-              <div className="relative mx-auto" style={{ width: '500px', height: '470px' }}>
+              <div className="relative mx-auto" style={{ width: '540px', height: '600px' }}>
                 <img
                   src={BLT}
                   alt="BLT Diagram"
                   className="object-contain rounded-md"
-                  style={{ width: '80%', height: '85%' }}
+                  style={{ width: '85%', height: '85%' }}
                 />
                 <ParticleAnimation />
               </div>
             </div>
-
+              {/* Bottom Parameters below image */}
             <div className="flex justify-around bg-white rounded-lg shadow-sm border p-4 -mt-18">
                {parameters.slice(7, 10).map((param, index) => (
-                <InfoCardComponent key={index} {...param} size="small" />
+                <InfoCardComponent key={index} {...param} size="small" onClick={() => handleCardClick(param)} />
               ))}
             </div>
           </div>
@@ -81,7 +96,7 @@ const IndustrialDashboard = () => {
             </h2>
             <div className="space-y-1.5">
               {parameters.slice(10, 18).map((param, index) => (
-                <InfoCardComponent key={index} {...param} size="small" />
+                <InfoCardComponent key={index} {...param} size="small" onClick={() => handleCardClick(param)}/>
               ))}
             </div>
           </div>
@@ -102,6 +117,11 @@ const IndustrialDashboard = () => {
 
         </div>
       </div>
+      <TrendAnalysisModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        parameter={selectedParameter}
+      />
     </div>
   );
 };
