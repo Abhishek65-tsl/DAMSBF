@@ -1,50 +1,36 @@
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import Home from './Pages/Home';
-// import About from './Pages/About';
-// import NotFound from './Pages/NotFound';
-// import Layout from './Components/Layout';
-// import BLT from './Pages/BLT';
-// import Dashboard from './Pages/Dashboard/Dashboard';
-
-// function App() {
-//   return (
-//     <Router>
-//       <Routes>
-//         <Route path="/" element={<Layout />}>
-//           <Route path="home" element={<Home />} />
-//           <Route path="about" element={<About />} />
-//           <Route path="BLT" element={<BLT />} />
-//           <Route path="dashboard" element={<Dashboard />} />
-//           <Route path="*" element={<NotFound />} />
-//         </Route>
-//       </Routes>
-//     </Router>
-//   );
-// }
-
-// export default App;
-
-
-// src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import routes from './routes/routes';
 import Layout from './Components/Layout';
 import NotFound from './Pages/NotFound';
+import LoginPage from './Pages/LoginPage';
+import SignOutPage from './Pages/SignOutPage';
+import ResetPasswordPage from './Pages/ResetPasswordPage'; // ✅ Import added
 
 function App() {
   return (
     <Router>
       <Routes>
+
+        {/* ✅ Public routes (NO layout) */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signout" element={<SignOutPage />} />
+        <Route path="/reset" element={<ResetPasswordPage />} /> {/* ✅ Added Reset */}
+
+        {/* ✅ Private routes (WITH layout) */}
         <Route path="/" element={<Layout />}>
-          {routes.map((route, index) => (
-            <Route
-              key={index}
-              path={route.path === '/' ? '' : route.path.replace('/', '')}
-              element={route.element}
-            />
-          ))}
+          {routes
+            .filter(r => !['/login', '/signout', '/reset'].includes(r.path))
+            .map((route, index) => (
+              <Route
+                key={index}
+                path={route.path === '/' ? '' : route.path.replace('/', '')}
+                element={route.element}
+              />
+            ))}
+          {/* Catch-all for unknown routes */}
           <Route path="*" element={<NotFound />} />
         </Route>
+
       </Routes>
     </Router>
   );

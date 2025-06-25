@@ -12,19 +12,19 @@ import { Link, useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
+import CollectionsIcon from '@mui/icons-material/Collections';
 
-// Prevent 'collapsed' from being passed to the DOM
 const StyledListItemText = styled(ListItemText, {
   shouldForwardProp: (prop) => prop !== 'collapsed',
 })(({ collapsed }) => ({
   display: collapsed ? 'none' : 'block',
 }));
-(({ collapsed }) => ({
-  display: collapsed ? 'none' : 'block',
-}));
 
 function Sidebar({ collapsed }) {
   const location = useLocation();
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
   const menuItems = [
     {
@@ -46,6 +46,11 @@ function Sidebar({ collapsed }) {
       text: 'Dashboard',
       path: '/dashboard',
       icon: <DashboardIcon />,
+    },
+    {
+      text: 'Media Gallery',
+      path: '/media-gallery',
+      icon: <CollectionsIcon />,
     },
   ];
 
@@ -76,6 +81,55 @@ function Sidebar({ collapsed }) {
           </ListItemButton>
         </ListItem>
       ))}
+
+      {/* ✅ Toggle Sign Out or Login */}
+      <ListItem disablePadding sx={{ display: 'block' }}>
+        {isLoggedIn ? (
+          <ListItemButton
+            component={Link}
+            to="/signout"
+            selected={location.pathname === '/signout'}
+            sx={{
+              minHeight: 48,
+              justifyContent: collapsed ? 'center' : 'initial',
+              px: 2.5,
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: collapsed ? 'auto' : 3,
+                justifyContent: 'center',
+              }}
+            >
+              <LogoutIcon />
+            </ListItemIcon>
+            <StyledListItemText primary="Sign Out" collapsed={collapsed} />
+          </ListItemButton>
+        ) : (
+          <ListItemButton
+            component={Link}
+            to="/login"
+            selected={location.pathname === '/login'}
+            sx={{
+              minHeight: 48,
+              justifyContent: collapsed ? 'center' : 'initial',
+              px: 2.5,
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: collapsed ? 'auto' : 3,
+                justifyContent: 'center',
+              }}
+            >
+              <LoginIcon />
+            </ListItemIcon>
+            <StyledListItemText primary="Login" collapsed={collapsed} />
+          </ListItemButton>
+        )}
+      </ListItem>
     </List>
   );
 }

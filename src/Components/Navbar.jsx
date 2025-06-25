@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx
+// src/Components/Navbar.jsx
 import React, { useState } from 'react';
 import {
   Typography,
@@ -8,10 +8,18 @@ import {
   ListItemButton,
   ListItemText,
   Paper,
+  Box,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+
+const SearchContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+  position: 'relative',
+}));
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -116,33 +124,35 @@ function Navbar() {
         Digital Asset Management System TSK
       </Typography>
 
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
+      <SearchContainer>
+        <Search>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
 
-        <StyledInputBase
-          placeholder="Search…"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          onKeyDown={handleKeyDown}
-          inputProps={{ 'aria-label': 'search' }}
-        />
+          <StyledInputBase
+            placeholder="Search…"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyDown}
+            inputProps={{ 'aria-label': 'search' }}
+          />
 
-        {showSuggestions && filteredSuggestions.length > 0 && (
-          <SuggestionBox>
-            <List dense>
-              {filteredSuggestions.map((suggestion) => (
-                <ListItem disablePadding key={suggestion.path}>
-                  <ListItemButton onClick={() => handleSelect(suggestion.path)}>
-                    <ListItemText primary={suggestion.name} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </SuggestionBox>
-        )}
-      </Search>
+          {showSuggestions && filteredSuggestions.length > 0 && (
+            <SuggestionBox>
+              <List dense>
+                {filteredSuggestions.map((suggestion) => (
+                  <ListItem disablePadding key={suggestion.path}>
+                    <ListItemButton onClick={() => handleSelect(suggestion.path)}>
+                      <ListItemText primary={suggestion.name} />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </SuggestionBox>
+          )}
+        </Search>
+      </SearchContainer>
     </>
   );
 }
