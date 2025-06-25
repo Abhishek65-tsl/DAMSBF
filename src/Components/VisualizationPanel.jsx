@@ -1,6 +1,9 @@
-import React from 'react';
+// VisualizationPanel.jsx
+
+import React, { useState } from 'react';
 import { FaBolt, FaTint, FaSnowflake, FaCogs } from 'react-icons/fa';
 
+// System Data
 const systems = [
   { name: 'Charge', value: 85, color: '#4caf50', icon: <FaBolt /> },
   { name: 'Valve', value: 55, color: '#ff9800', icon: <FaTint /> },
@@ -8,155 +11,204 @@ const systems = [
   { name: 'Hydraulic', value: 70, color: '#2196f3', icon: <FaCogs /> },
 ];
 
-const shadeColor = (color, percent) => {
-  const num = parseInt(color.slice(1), 16);
-  const amt = Math.round(2.55 * percent);
-  const R = (num >> 16) + amt;
-  const G = ((num >> 8) & 0x00FF) + amt;
-  const B = (num & 0x0000FF) + amt;
-  return (
-    '#' +
-    (0x1000000 +
-      (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
-      (G < 255 ? (G < 1 ? 0 : G) : 255) * 0x100 +
-      (B < 255 ? (B < 1 ? 0 : B) : 255))
-      .toString(16)
-      .slice(1)
-  );
-};
-
+// Gauge Component
 const Gauge = ({ value }) => {
+  const [hovered, setHovered] = useState(false);
   const angle = (value / 100) * 180;
-  const centerX = 100;
-  const centerY = 100;
-  const needleLength = 60;
+  const centerX = 50;
+  const centerY = 50;
+  const needleLength = 30;
   const rad = ((angle - 180) * Math.PI) / 180;
   const needleX = centerX + needleLength * Math.cos(rad);
   const needleY = centerY + needleLength * Math.sin(rad);
 
   return (
-    <svg width="200" height="110" style={{ display: 'block', margin: '0 auto' }}>
-      <defs>
-        <linearGradient id="gaugeGradient" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#f44336" />
-          <stop offset="25%" stopColor="#ff9800" />
-          <stop offset="50%" stopColor="#ffeb3b" />
-          <stop offset="75%" stopColor="#2196f3" />
-          <stop offset="100%" stopColor="#4caf50" />
-        </linearGradient>
-      </defs>
+    <div
+      style={{ position: 'relative', width: '100px', height: '60px' }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {hovered && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '-18px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            fontSize: '10px',
+            fontWeight: 'bold',
+            backgroundColor: '#222',
+            color: '#fff',
+            padding: '2px 6px',
+            borderRadius: '4px',
+            whiteSpace: 'nowrap',
+            zIndex: 1
+          }}
+        >
+          {value}%
+        </div>
+      )}
+      <svg width="100" height="60">
+        <defs>
+          <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#f44336" />
+            <stop offset="50%" stopColor="#ffeb3b" />
+            <stop offset="100%" stopColor="#4caf50" />
+          </linearGradient>
+        </defs>
 
-      <path
-        d={`M ${centerX - 80},${centerY} A 80 80 0 0 1 ${centerX + 80},${centerY}`}
-        stroke="url(#gaugeGradient)"
-        strokeWidth="12"
-        fill="none"
-        strokeLinecap="round"
-      />
+        <path
+          d={`M ${centerX - 40},${centerY} A 40 40 0 0 1 ${centerX + 40},${centerY}`}
+          stroke="url(#gaugeGradient)"
+          strokeWidth="8"
+          fill="none"
+          strokeLinecap="round"
+        />
 
-      {[0, 25, 50, 75, 100].map((tick) => {
-        const tickAngle = (tick / 100) * 180;
-        const tickRad = ((tickAngle - 180) * Math.PI) / 180;
-        const x1 = centerX + 68 * Math.cos(tickRad);
-        const y1 = centerY + 68 * Math.sin(tickRad);
-        const x2 = centerX + 80 * Math.cos(tickRad);
-        const y2 = centerY + 80 * Math.sin(tickRad);
-        const labelX = centerX + 56 * Math.cos(tickRad);
-        const labelY = centerY + 56 * Math.sin(tickRad) - 4;
+        {[0, 25, 50, 75, 100].map((tick) => {
+          const tickAngle = (tick / 100) * 180;
+          const tickRad = ((tickAngle - 180) * Math.PI) / 180;
+          const x1 = centerX + 34 * Math.cos(tickRad);
+          const y1 = centerY + 34 * Math.sin(tickRad);
+          const x2 = centerX + 40 * Math.cos(tickRad);
+          const y2 = centerY + 40 * Math.sin(tickRad);
+          const labelX = centerX + 28 * Math.cos(tickRad);
+          const labelY = centerY + 28 * Math.sin(tickRad) - 2;
 
-        return (
-          <g key={tick}>
-            <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#000" strokeWidth="2" />
-            <text x={labelX} y={labelY} fontSize="10" textAnchor="middle" fill="#333">
-              {tick}%
-            </text>
-          </g>
-        );
-      })}
+          return (
+            <g key={tick}>
+              <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#000" strokeWidth="1" />
+              <text x={labelX} y={labelY} fontSize="6" textAnchor="middle" fill="#333">
+                {tick}
+              </text>
+            </g>
+          );
+        })}
 
-      <line
-        x1={centerX}
-        y1={centerY}
-        x2={needleX}
-        y2={needleY}
-        stroke="#000"
-        strokeWidth="3"
-        style={{ transition: 'all 0.5s ease-out' }}
-      />
-      <circle cx={centerX} cy={centerY} r="5" fill="#000" />
-    </svg>
+        <line
+          x1={centerX}
+          y1={centerY}
+          x2={needleX}
+          y2={needleY}
+          stroke="#000"
+          strokeWidth="2"
+          style={{ transition: 'all 0.5s ease-out' }}
+        />
+        <circle cx={centerX} cy={centerY} r="3" fill="#000" />
+      </svg>
+    </div>
   );
 };
 
+// Linear Health Bar
+const LinearHealthBar = ({ value, darkMode }) => {
+  let color = '#4caf50';
+  if (value < 40) color = '#f44336';
+  else if (value < 70) color = '#ffc107';
+
+  return (
+    <div style={{
+      padding: '10px 16px',
+      marginBottom: '20px',
+      borderRadius: '12px',
+      background: darkMode ? '#222' : '#fff',
+      boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
+      textAlign: 'center',
+      color: darkMode ? '#eee' : '#000',
+    }}>
+      <h3 style={{ marginBottom: '6px', fontSize: '14px' }}>Equipment Health</h3>
+      <div style={{ fontSize: '15px', fontWeight: 'bold', marginBottom: '5px' }}>
+        {value.toFixed(2)}%
+        <span style={{
+          display: 'inline-block',
+          width: '8px',
+          height: '8px',
+          backgroundColor: color,
+          borderRadius: '50%',
+          marginLeft: '6px'
+        }}></span>
+      </div>
+      <div style={{
+        height: '6px',
+        width: '100%',
+        borderRadius: '5px',
+        backgroundColor: '#ccc',
+        overflow: 'hidden',
+      }}>
+        <div style={{
+          height: '100%',
+          width: `${value}%`,
+          backgroundColor: color,
+          transition: 'width 0.5s ease',
+        }} />
+      </div>
+    </div>
+  );
+};
+
+// Main Component
 const VisualizationPanel = () => {
-  const overallHealth = 80;
+  const [darkMode, setDarkMode] = useState(false);
+  const overallHealth = systems.reduce((sum, sys) => sum + sys.value, 0) / systems.length;
 
   return (
     <div
       style={{
-        width: '520px',
-        background: 'rgba(255, 255, 255, 0.7)',
-        backdropFilter: 'blur(8px)',
-        border: '1px solid rgba(255, 255, 255, 0.3)',
-        padding: '16px',
+        maxWidth: '760px',
+        margin: '0 auto',
+        padding: '24px 20px',
         borderRadius: '16px',
+        background: darkMode ? '#1a1a1a' : '#fff',
+        color: darkMode ? '#eee' : '#000',
         boxShadow: '0 6px 16px rgba(0,0,0,0.1)',
         fontFamily: 'Poppins, sans-serif',
+        transition: 'all 0.3s ease',
       }}
     >
-      <div style={{ width: 200, margin: '0 auto', marginBottom: '35px' }}>
-        <h2
-          style={{
-            fontSize: '18px',
-            fontWeight: '700',
-            color: '#333',
-            textAlign: 'center',
-            marginBottom: '3px',
-          }}
-        >
-          Overall Health
-        </h2>
-        <Gauge value={overallHealth} />
-      </div>
+      <button
+        onClick={() => setDarkMode(!darkMode)}
+        style={{
+          float: 'right',
+          marginBottom: '10px',
+          backgroundColor: darkMode ? '#333' : '#ddd',
+          color: darkMode ? '#fff' : '#000',
+          border: 'none',
+          padding: '6px 12px',
+          borderRadius: '6px',
+          cursor: 'pointer',
+        }}
+      >
+        {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+      </button>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: '20px', rowGap: '12px' }}>
+      <LinearHealthBar value={overallHealth} darkMode={darkMode} />
+
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '20px',
+          marginTop: '10px'
+        }}
+      >
         {systems.map((sys, index) => (
           <div
             key={index}
             style={{
-              backgroundColor: '#f9f9f9',
-              padding: '12px',
+              backgroundColor: darkMode ? '#2c2c2c' : '#f9f9f9',
+              padding: '10px',
               borderRadius: '10px',
-              boxShadow: '0 1px 4px rgba(0,0,0,0.1)',
-              fontSize: '13px',
-              fontWeight: 500,
-              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-              cursor: 'pointer',
-            }}
-            title={`System: ${sys.name}\nHealth: ${sys.value}%`}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.02)';
-              e.currentTarget.style.boxShadow = '0 4px 10px rgba(0,0,0,0.15)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 1px 4px rgba(0,0,0,0.1)';
+              boxShadow: '0 1px 4px rgba(0,0,0,0.05)',
+              textAlign: 'center',
+              minHeight: '130px',
+              color: darkMode ? '#fff' : '#000',
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px', color: '#333' }}>
-              <span>{sys.icon} {sys.name}</span>
-              <span>{sys.value}%</span>
-            </div>
-            <div style={{ height: '6px', width: '100%', borderRadius: '6px', backgroundColor: '#ddd' }}>
-              <div
-                style={{
-                  height: '6px',
-                  width: `${sys.value}%`,
-                  borderRadius: '6px',
-                  background: `linear-gradient(90deg, ${sys.color}, ${shadeColor(sys.color, -20)})`,
-                }}
-              />
-            </div>
+            <h4 style={{ marginBottom: '6px', fontSize: '12px' }}>{sys.name.toUpperCase()}</h4>
+            <Gauge value={sys.value} />
+            <p style={{ marginTop: '4px', fontSize: '11px' }}>
+              {sys.name} System
+            </p>
           </div>
         ))}
       </div>
