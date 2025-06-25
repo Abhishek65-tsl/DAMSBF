@@ -33,7 +33,7 @@ import NotFound from './Pages/NotFound';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/DAMSBF">
       <Routes>
         <Route path="/" element={<Layout />}>
           {routes.map((route, index) => (
