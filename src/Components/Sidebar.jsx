@@ -1,4 +1,3 @@
-// src/components/Sidebar.jsx
 import React from 'react';
 import {
   List,
@@ -15,6 +14,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import CollectionsIcon from '@mui/icons-material/Collections';
+import ChatIcon from '@mui/icons-material/Chat'; // ✅ imported for Chat Assistant
 
 const StyledListItemText = styled(ListItemText, {
   shouldForwardProp: (prop) => prop !== 'collapsed',
@@ -51,6 +51,11 @@ function Sidebar({ collapsed }) {
       text: 'Media Gallery',
       path: '/media-gallery',
       icon: <CollectionsIcon />,
+    },
+    {
+      text: 'Chat Assistant', // ✅ new chatbot menu
+      path: '/chatbot',
+      icon: <ChatIcon />,
     },
   ];
 

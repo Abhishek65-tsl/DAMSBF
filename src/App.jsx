@@ -4,22 +4,22 @@ import Layout from './Components/Layout';
 import NotFound from './Pages/NotFound';
 import LoginPage from './Pages/LoginPage';
 import SignOutPage from './Pages/SignOutPage';
-import ResetPasswordPage from './Pages/ResetPasswordPage'; // ✅ Import added
+import ResetPasswordPage from './Pages/ResetPasswordPage'; // ✅ Added
 
 function App() {
   return (
     <Router>
       <Routes>
 
-        {/* ✅ Public routes (NO layout) */}
+        {/* ✅ Public routes (NO layout wrapper) */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signout" element={<SignOutPage />} />
-        <Route path="/reset" element={<ResetPasswordPage />} /> {/* ✅ Added Reset */}
+        <Route path="/reset" element={<ResetPasswordPage />} />
 
-        {/* ✅ Private routes (WITH layout) */}
+        {/* ✅ All other private routes (WITH layout wrapper) */}
         <Route path="/" element={<Layout />}>
           {routes
-            .filter(r => !['/login', '/signout', '/reset'].includes(r.path))
+            .filter(route => !['/login', '/signout', '/reset'].includes(route.path))
             .map((route, index) => (
               <Route
                 key={index}
@@ -27,7 +27,8 @@ function App() {
                 element={route.element}
               />
             ))}
-          {/* Catch-all for unknown routes */}
+
+          {/* Catch-all for unknown private routes */}
           <Route path="*" element={<NotFound />} />
         </Route>
 

@@ -1,4 +1,3 @@
-// src/Components/Navbar.jsx
 import React, { useState } from 'react';
 import {
   Typography,
@@ -82,6 +81,7 @@ function Navbar() {
     { name: 'BLT', path: '/BLT' },
     { name: 'About', path: '/about' },
     { name: 'Dashboard', path: '/dashboard' },
+    { name: 'Chat Assistant', path: '/chatbot' }, // ✅ Added chatbot path
   ];
 
   const handleSearchChange = (event) => {
