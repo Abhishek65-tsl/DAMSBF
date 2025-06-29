@@ -1,4 +1,3 @@
-// src/components/Sidebar.jsx
 import React from 'react';
 import {
   List,
@@ -9,56 +8,56 @@ import {
   styled,
 } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
-import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
+import HomeIcon from '@mui/icons-material/Home';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import LogoutIcon from '@mui/icons-material/Logout';
-import LoginIcon from '@mui/icons-material/Login';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import ChatIcon from '@mui/icons-material/Chat';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 
-// Prevent 'collapsed' from being passed to the DOM
 const StyledListItemText = styled(ListItemText, {
   shouldForwardProp: (prop) => prop !== 'collapsed',
 })(({ collapsed }) => ({
   display: collapsed ? 'none' : 'block',
 }));
-(({ collapsed }) => ({
-  display: collapsed ? 'none' : 'block',
-}));
 
-function Sidebar({ collapsed }) {
+function SidebarSection({ collapsed }) {
   const location = useLocation();
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  // This could be dynamic later based on URL or context
+  const basePath = '/blast-furnace/bf1';
+
   const menuItems = [
     {
       text: 'BLT',
-      path: '/BLT',
+      path: `${basePath}/BLT`,
       icon: <InfoIcon />,
     },
     {
       text: 'Charging System',
-      path: '/Charging System',
+      path: `${basePath}/Charging System`,
       icon: <HomeIcon />,
     },
     {
       text: 'About',
-      path: '/about',
+      path: `${basePath}/about`,
       icon: <InfoIcon />,
     },
     {
       text: 'Dashboard',
-      path: '/dashboard',
+      path: `${basePath}/dashboard`,
       icon: <DashboardIcon />,
     },
     {
       text: 'Media Gallery',
-      path: '/media-gallery',
+      path: `${basePath}/media-gallery`,
       icon: <CollectionsIcon />,
     },
     {
-      text: 'Chat Assistant', // ✅ new chatbot menu
-      path: '/chatbot',
+      text: 'Chat Assistant',
+      path: `${basePath}/chatbot`,
       icon: <ChatIcon />,
     },
   ];
@@ -90,6 +89,7 @@ function Sidebar({ collapsed }) {
           </ListItemButton>
         </ListItem>
       ))}
+
       <ListItem disablePadding sx={{ display: 'block' }}>
         {isLoggedIn ? (
           <ListItemButton
@@ -102,13 +102,7 @@ function Sidebar({ collapsed }) {
               px: 2.5,
             }}
           >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: collapsed ? 'auto' : 3,
-                justifyContent: 'center',
-              }}
-            >
+            <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 'auto' : 3, justifyContent: 'center' }}>
               <LogoutIcon />
             </ListItemIcon>
             <StyledListItemText primary="Sign Out" collapsed={collapsed} />
@@ -124,13 +118,7 @@ function Sidebar({ collapsed }) {
               px: 2.5,
             }}
           >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: collapsed ? 'auto' : 3,
-                justifyContent: 'center',
-              }}
-            >
+            <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 'auto' : 3, justifyContent: 'center' }}>
               <LoginIcon />
             </ListItemIcon>
             <StyledListItemText primary="Login" collapsed={collapsed} />
@@ -141,4 +129,4 @@ function Sidebar({ collapsed }) {
   );
 }
 
-export default Sidebar;
+export default SidebarSection;

@@ -1,5 +1,4 @@
-// src/components/Navbar.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Typography,
   InputBase,
@@ -8,10 +7,24 @@ import {
   ListItemButton,
   ListItemText,
   Paper,
+  Box,
+  Avatar,
+  IconButton,
+  Toolbar
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@mui/icons-material/Menu';
 import { styled, alpha } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import routes from '../routes/routes'; // dynamic routes import
+
+// Styled components
+const SearchContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+  position: 'relative',
+}));
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -63,18 +76,49 @@ const SuggestionBox = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
-function Navbar() {
+// Component
+function Navbar({ handleDrawerToggle }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [myVisits, setMyVisits] = useState(0);
+  const [totalVisits, setTotalVisits] = useState(0);
+  const hasVisitedRef = useRef(false);
   const navigate = useNavigate();
+  const userName = 'Lisa Das';
 
-  const pages = [
-    { name: 'Home', path: '/' },
-    { name: 'BLT', path: '/BLT' },
-    { name: 'About', path: '/about' },
-    { name: 'Dashboard', path: '/dashboard' },
-  ];
+  // Dynamically derive valid pages from routes
+  const pages = routes
+    .filter(route =>
+      route.path !== '*' &&
+      !['/login', '/signout', '/reset', '/signedout'].includes(route.path)
+    )
+    .map(route => {
+      const path = route.path;
+      const name =
+        path === '/'
+          ? 'Home'
+          : path
+              .replace('/', '')
+              .replace(/-/g, ' ')
+              .replace(/\b\w/g, l => l.toUpperCase());
+      return { name, path };
+    });
+
+  // Count visit stats once per session
+  useEffect(() => {
+    if (hasVisitedRef.current) return;
+    hasVisitedRef.current = true;
+
+    const visits = parseInt(localStorage.getItem('myVisits')) || 0;
+    const total = parseInt(localStorage.getItem('totalVisits')) || 0;
+
+    localStorage.setItem('myVisits', visits + 1);
+    localStorage.setItem('totalVisits', total + 1);
+
+    setMyVisits(visits + 1);
+    setTotalVisits(total + 1);
+  }, []);
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
@@ -111,40 +155,67 @@ function Navbar() {
   };
 
   return (
-    <>
-      <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
-        Digital Asset Management System TSK
-      </Typography>
+    <Toolbar sx={{ justifyContent: 'space-between'}}>
+      {/* Left: Menu icon + Title */}
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={handleDrawerToggle}
+          sx={{ mr: 2 }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+          Intelligent Condition Monitoring System
+        </Typography>
+      </Box>
 
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
+      {/* Right: Avatar, stats, search */}
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Avatar sx={{ bgcolor: '#fff', color: '#004C97', fontSize: '14px', width: 32, height: 32 }}>
+          {userName?.[0] || 'U'}
+        </Avatar>
+        <Typography variant="body1" sx={{ fontWeight: 500 }}>
+          {userName}
+        </Typography>
+        <Typography variant="body2">My Visits: <strong>{myVisits}</strong></Typography>
+        <Typography variant="body2">Total Visits: <strong>{totalVisits}</strong></Typography>
 
-        <StyledInputBase
-          placeholder="Search…"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          onKeyDown={handleKeyDown}
-          inputProps={{ 'aria-label': 'search' }}
-        />
-
-        {showSuggestions && filteredSuggestions.length > 0 && (
-          <SuggestionBox>
-            <List dense>
-              {filteredSuggestions.map((suggestion) => (
-                <ListItem disablePadding key={suggestion.path}>
-                  <ListItemButton onClick={() => handleSelect(suggestion.path)}>
-                    <ListItemText primary={suggestion.name} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </SuggestionBox>
-        )}
-      </Search>
-    </>
+        {/* Search box */}
+        <SearchContainer sx={{ width: { xs: '120px', sm: '160px' }, marginRight: '70px' }}>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onKeyDown={handleKeyDown}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+            {showSuggestions && filteredSuggestions.length > 0 && (
+              <SuggestionBox>
+                <List dense>
+                  {filteredSuggestions.map((suggestion) => (
+                    <ListItem disablePadding key={suggestion.path}>
+                      <ListItemButton onClick={() => handleSelect(suggestion.path)}>
+                        <ListItemText primary={suggestion.name} />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+                </List>
+              </SuggestionBox>
+            )}
+          </Search>
+        </SearchContainer>
+      </Box>
+    </Toolbar>
   );
 }
 
 export default Navbar;
+

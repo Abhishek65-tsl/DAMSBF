@@ -13,10 +13,11 @@ const AlertBarGraph = ({
     <div
       className="flex-col font-sans select-none"
       style={{
-        width: "250px",       // ← Change width here
-        height: "150px",      // ← Change height here
-        marginTop: "-30px",    // ← Move down (use negative value like -10px to move up)
-        // marginBottom: "10px", // ← Optional: to move it further down
+        width: "70%",       // ← Change width here
+        height: "135px",      // ← Change height here
+        marginTop: "-30px",   // ← Move down (use negative value like -10px to move up)
+        marginBottom: "40px",
+        marginLeft:"40px" // ← Optional: to move it further down
       }}
     >
       {/* X-axis Label */}
