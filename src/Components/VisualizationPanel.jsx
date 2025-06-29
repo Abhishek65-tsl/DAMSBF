@@ -1,3 +1,4 @@
+
 import React from "react";
 import "react-circular-progressbar/dist/styles.css";
 
@@ -15,11 +16,13 @@ const Gauge = ({ value }) => {
   const centerX = 100;
   const centerY = 100;
   const needleLength = 60;
+
   const rad = ((angle - 180) * Math.PI) / 180;
   const needleX = centerX + needleLength * Math.cos(rad);
   const needleY = centerY + needleLength * Math.sin(rad);
 
   return (
+
     <svg
       width="100%"
       height="110"
@@ -115,9 +118,11 @@ const Gauge = ({ value }) => {
 const VisualizationPanel = () => {
   const overallHealth = 80; // Update dynamically if needed
 
+
   return (
     <div
       style={{
+
         width: "90%",
         backgroundColor: "white",
         padding: "10px",
@@ -152,10 +157,12 @@ const VisualizationPanel = () => {
 
       {/* System-wise Health */}
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+
         {systems.map((sys, index) => (
           <div
             key={index}
             style={{
+
               backgroundColor: "#f9f9f9",
               padding: "14px",
               borderRadius: "6px",
@@ -196,6 +203,7 @@ const VisualizationPanel = () => {
                 }}
               />
             </div>
+
           </div>
         ))}
       </div>

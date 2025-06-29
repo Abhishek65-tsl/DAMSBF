@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import InfoCardComponent from "../../Components/InfoCardComponent";
+
 // import AlertCard from "../../Components/AlertCard";
+
 import ParticleAnimation from "../../Components/Particle/ParticleAnimation";
 import BLT from "../../assets/Images/BLT.jpg";
 import AlertBarGraph from "../../Components/AlertBarGraph";
@@ -8,8 +10,10 @@ import AlertBarGraph from "../../Components/AlertBarGraph";
 import VisualizationPanel from "../../Components/VisualizationPanel";
 import AlertSummaryBox from "../../Components/AlertSummaryBox";
 import OperationMaintenanceTable from "../../Components/OperationMaintenanceTable";
+
 import TrendAnalysisModal from "../../Components/TrendAnalysisModal";
 // import OverallHealthPanel from "../../Components/OverallHealthPanel";
+
 
 const IndustrialDashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,6 +31,7 @@ const IndustrialDashboard = () => {
   };
 
   const parameters = [
+
     {
       title: "Wind Volume(Nm³/hr)",
       amount: "33629.1",
@@ -134,11 +139,13 @@ const IndustrialDashboard = () => {
       ucl: 80.0,
       lcl: 30.0,
     },
+
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl px-2 mx-auto py-2">
+
         <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
           {/* Left Parameters */}
           <div className="col-span-1 bg-white rounded-lg shadow-sm border p-2">
@@ -154,31 +161,40 @@ const IndustrialDashboard = () => {
                   size="small"
                   onClick={() => handleCardClick(param)}
                 />
+
               ))}
             </div>
           </div>
 
           {/* Image + Mid Params */}
           <div className="col-span-3 flex flex-col gap-2 relative">
+
+
             {/*  Added OperationMaintenanceTable above BLT image */}
             <div className="bg-white border p-2 rounded-lg">
               <OperationMaintenanceTable />
             </div>
 
             <div className="bg-white  p-1">
+
               <div
                 className="relative mx-auto"
                 style={{ width: "540px", height: "600px" }}
               >
+
                 <img
                   src={BLT}
                   alt="BLT Diagram"
                   className="object-contain rounded-md"
+
+
                   style={{ width: "85%", height: "85%" }}
+
                 />
                 <ParticleAnimation />
               </div>
             </div>
+
             {/* Bottom Parameters below image */}
             <div className="flex justify-around bg-white rounded-lg shadow-sm border p-4 -mt-18">
               {parameters.slice(7, 10).map((param, index) => (
@@ -188,6 +204,7 @@ const IndustrialDashboard = () => {
                   size="small"
                   onClick={() => handleCardClick(param)}
                 />
+
               ))}
             </div>
           </div>
@@ -195,6 +212,7 @@ const IndustrialDashboard = () => {
           {/* Right Parameters */}
           <div className="col-span-1 bg-white rounded-lg shadow-sm border p-2">
             <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+
               {/* <span className="w-3 h-5">⚙️</span>  */}
               PARAMETERS
             </h2>
@@ -206,9 +224,11 @@ const IndustrialDashboard = () => {
                   size="small"
                   onClick={() => handleCardClick(param)}
                 />
+
               ))}
             </div>
           </div>
+
 
 
           {/* Visualization Panel with AlertSummaryBox ..overall health..and Graphs */}
@@ -228,6 +248,7 @@ const IndustrialDashboard = () => {
               </div>
             </div>
           </div>
+
         </div>
       </div>
       <TrendAnalysisModal

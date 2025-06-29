@@ -11,9 +11,15 @@ const ComplianceBarGraph = ({ value = 73 , title = "Compliance Chart"}) => {
     <div
       style={{
         width: 250,
+<<<<<<< HEAD
+        height: 200,
+          marginTop: '-20px',       // ← move down (negative like "-10px" to move up)
+          marginLeft: '80px',      // ← move right (negative to move left)
+=======
         height: 180,
           marginTop: '5px',       // ← move down (negative like "-10px" to move up)
           marginLeft: '15px',      // ← move right (negative to move left)
+>>>>>>> feature/Advaita-Vedanta/Making-UI
         border: '0px solid #ccc',
         padding: '10px',
         boxSizing: 'none',

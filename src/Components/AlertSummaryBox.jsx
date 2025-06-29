@@ -2,6 +2,7 @@ import React from "react";
 
 const AlertSummaryBox = ({ style }) => {
   return (
+
     <div style={{ ...style, width: "200%" }}>
       {/* Header Lines */}
       <div
@@ -46,52 +47,61 @@ const AlertSummaryBox = ({ style }) => {
           // overflow: "hidden",
           textAlign: "center",
           width: "100%",
+
         }}
       >
         <div
           style={{
+
             background: "linear-gradient(to right, #2e7d32, #66bb6a)",
             flex: 1,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             color: "#fff",
+
           }}
         >
           ✅ 434 Total
         </div>
         <div
           style={{
+
             background: "linear-gradient(to right, #4fc3f7, #81d4fa)",
             flex: 1,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             color: "#000",
+
           }}
         >
           🟦 39 Open
         </div>
         <div
           style={{
+
             background: "linear-gradient(to right, #fbc02d, #fff176)",
             flex: 1,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             color: "#000",
+
           }}
         >
           🟨 395 Closed
         </div>
         <div
           style={{
+
             background: "linear-gradient(to right, #cfd8dc, #eceff1)",
             flex: 1,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             color: "#000",
+
           }}
         >
           🔕 0 Ack

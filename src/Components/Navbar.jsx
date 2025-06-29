@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
+
   Typography,
   InputBase,
   List,
@@ -21,7 +22,7 @@ import routes from '../routes/routes'; // dynamic routes import
 // Styled components
 const SearchContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'center', 
   gap: theme.spacing(1),
   position: 'relative',
 }));
@@ -152,9 +153,29 @@ function Navbar({ handleDrawerToggle }) {
         navigate('/notfound');
       }
     }
+
   };
 
+  const handleLogout = () => {
+    alert('Logged out!');
+  };
+
+  useEffect(() => {
+    if (hasVisitedRef.current) return; // ✅ prevent multiple calls
+    hasVisitedRef.current = true;
+
+    const visits = parseInt(localStorage.getItem('myVisits')) || 0;
+    const total = parseInt(localStorage.getItem('totalVisits')) || 0;
+
+    localStorage.setItem('myVisits', visits + 1);
+    localStorage.setItem('totalVisits', total + 1);
+
+    setMyVisits(visits + 1);
+    setTotalVisits(total + 1);
+  }, []);
+
   return (
+
     <Toolbar sx={{ justifyContent: 'space-between'}}>
       {/* Left: Menu icon + Title */}
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -214,6 +235,7 @@ function Navbar({ handleDrawerToggle }) {
         </SearchContainer>
       </Box>
     </Toolbar>
+
   );
 }
 

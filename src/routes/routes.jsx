@@ -2,7 +2,6 @@
 import Layout from "../Components/Layout";
 import Home from "../Pages/Home";
 import BLT from "../Pages/BLT";
-import About from "../Pages/About";
 import NotFound from "../Pages/NotFound";
 import LoginPage from "../Pages/LoginPage";
 import SignOutPage from "../Pages/SignOutPage";
@@ -11,6 +10,7 @@ import SignedOutPage from "../Pages/SignedOutPage";
 import MediaGallery from "../Pages/MediaGallery";
 import ChatBot from "../Pages/ChatBot";
 import ComingSoon from "../Pages/ComingSoon";
+import AboutUs from "../Pages/AboutUs"; // ✅ Correct location now
 
 const routes = [
   {
@@ -20,7 +20,7 @@ const routes = [
       { path: "", element: <Home /> },
       { path: "blast-furnace/bf1/", element: <BLT /> },
       { path: "blast-furnace/bf1/BLT", element: <BLT /> },
-      { path: "blast-furnace/bf1/about", element: <About /> },
+      { path: "blast-furnace/bf1/about", element: <AboutUs /> }, // ✅ correct usage
       { path: "blast-furnace/bf1/media-gallery", element: <MediaGallery /> },
       { path: "blast-furnace/bf1/chatbot", element: <ChatBot /> },
       { path: "blast-furnace/bf2", element: <ComingSoon /> },
