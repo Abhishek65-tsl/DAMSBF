@@ -1,8 +1,30 @@
 /* src/styles/App.css */
+
+/* Neutral Color Palette Variables */
+:root {
+  /* Light Mode Colors */
+  --neutral-0-light: #ffffff;
+  --neutral-100-light: #f5f5f5;
+  --neutral-200-light: #e5e5e5;
+  --neutral-900-light: #525252;
+  --neutral-1000-light: #000000;
+  
+  /* Dark Mode Colors */
+  --neutral-0-dark: #000000;
+  --neutral-100-dark: #525252;
+  --neutral-200-dark: #737373;
+  --neutral-900-dark: #d4d4d4;
+  --neutral-1000-dark: #f5f5f5;
+}
+
+/* Base Styles */
 body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
+  transition: all 0.3s ease;
+  background-color: var(--neutral-0-light);
+  color: var(--neutral-1000-light);
 }
 
 .app-container {
@@ -13,4 +35,329 @@ body {
   flex-grow: 1;
   padding: 20px;
 }
+
+/* Dark Mode Toggle Button Styles */
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(135deg, var(--neutral-200-light) 0%, var(--neutral-900-light) 100%);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(82, 82, 82, 0.3);
+  overflow: hidden;
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(82, 82, 82, 0.4);
+}
+
+.dark-mode-toggle:active {
+  transform: scale(0.98);
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  background: var(--neutral-0-light);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-icon {
+  font-size: 14px;
+  transition: all 0.3s ease;
+  color: var(--neutral-900-light);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: var(--neutral-0-dark);
+  color: var(--neutral-1000-dark);
+}
+
+body.dark-mode .dark-mode-toggle {
+  background: linear-gradient(135deg, var(--neutral-200-dark) 0%, var(--neutral-100-dark) 100%);
+  box-shadow: 0 4px 12px rgba(115, 115, 115, 0.3);
+}
+
+body.dark-mode .dark-mode-toggle:hover {
+  box-shadow: 0 6px 20px rgba(115, 115, 115, 0.4);
+}
+
+body.dark-mode .toggle-slider {
+  transform: translateX(30px);
+  background: var(--neutral-0-dark);
+}
+
+body.dark-mode .toggle-icon {
+  transform: rotate(360deg);
+  color: var(--neutral-900-dark);
+}
+
+/* Apply dark mode to common elements */
+body.dark-mode .header,
+body.dark-mode .navbar,
+body.dark-mode nav {
+  background-color: var(--neutral-100-dark);
+  border-color: var(--neutral-200-dark);
+}
+
+body.dark-mode .card,
+body.dark-mode .panel,
+body.dark-mode .container {
+  background-color: var(--neutral-100-dark);
+  border-color: var(--neutral-200-dark);
+  color: var(--neutral-1000-dark);
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: var(--neutral-200-dark);
+  border-color: var(--neutral-900-dark);
+  color: var(--neutral-1000-dark);
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: var(--neutral-900-dark);
+}
+
+body.dark-mode .sidebar {
+  background-color: var(--neutral-100-dark);
+  border-color: var(--neutral-200-dark);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: var(--neutral-1000-dark);
+}
+
+body.dark-mode a {
+  color: var(--neutral-900-dark);
+}
+
+body.dark-mode a:hover {
+  color: var(--neutral-1000-dark);
+}
+
+body.dark-mode .btn,
+body.dark-mode button {
+  background-color: var(--neutral-200-dark);
+  border-color: var(--neutral-900-dark);
+  color: var(--neutral-1000-dark);
+}
+
+body.dark-mode .btn:hover,
+body.dark-mode button:hover {
+  background-color: var(--neutral-900-dark);
+}
+
+body.dark-mode table {
+  background-color: var(--neutral-100-dark);
+  border-color: var(--neutral-200-dark);
+}
+
+body.dark-mode th {
+  background-color: var(--neutral-200-dark);
+  color: var(--neutral-1000-dark);
+}
+
+body.dark-mode td {
+  border-color: var(--neutral-200-dark);
+  color: var(--neutral-1000-dark);
+}
+
+/* Light Mode Overrides for Common Elements */
+.header,
+.navbar,
+nav {
+  background-color: var(--neutral-100-light);
+  border-color: var(--neutral-200-light);
+}
+
+.card,
+.panel,
+.container {
+  background-color: var(--neutral-100-light);
+  border-color: var(--neutral-200-light);
+  color: var(--neutral-1000-light);
+}
+
+input,
+textarea,
+select {
+  background-color: var(--neutral-0-light);
+  border: 1px solid var(--neutral-200-light);
+  color: var(--neutral-1000-light);
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--neutral-900-light);
+}
+
+.sidebar {
+  background-color: var(--neutral-100-light);
+  border-color: var(--neutral-200-light);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--neutral-1000-light);
+}
+
+a {
+  color: var(--neutral-900-light);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--neutral-1000-light);
+}
+
+.btn,
+button {
+  background-color: var(--neutral-200-light);
+  border: 1px solid var(--neutral-900-light);
+  color: var(--neutral-1000-light);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover,
+button:hover {
+  background-color: var(--neutral-900-light);
+  color: var(--neutral-0-light);
+}
+
+table {
+  background-color: var(--neutral-0-light);
+  border: 1px solid var(--neutral-200-light);
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: var(--neutral-100-light);
+  color: var(--neutral-1000-light);
+  padding: 12px;
+  border-bottom: 1px solid var(--neutral-200-light);
+}
+
+td {
+  border-bottom: 1px solid var(--neutral-200-light);
+  color: var(--neutral-1000-light);
+  padding: 12px;
+}
+
+/* SVG Dark Mode Fixes */
+.dark-mode svg,
+[data-theme="dark"] svg,
+.dark svg {
+  background: var(--neutral-0-light) !important;
+  border-radius: 8px;
+}
+
+.dark-mode svg path,
+.dark-mode svg circle,
+.dark-mode svg rect,
+.dark-mode svg polygon,
+[data-theme="dark"] svg path,
+[data-theme="dark"] svg circle,
+[data-theme="dark"] svg rect,
+[data-theme="dark"] svg polygon {
+  fill: var(--neutral-100-dark);
+  stroke: var(--neutral-0-dark);
+  stroke-width: 1px;
+}
+
+.dark-mode svg text,
+[data-theme="dark"] svg text {
+  fill: var(--neutral-0-dark) !important;
+}
+
+/* Canvas elements fix */
+.dark-mode canvas,
+[data-theme="dark"] canvas {
+  background: var(--neutral-100-dark) !important;
+  border-radius: 8px;
+}
+
+/* Diagram container fix */
+.dark-mode .diagram-container *,
+[data-theme="dark"] .diagram-container * {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.dark-mode .diagram-container svg,
+.dark-mode .diagram-container svg *,
+[data-theme="dark"] .diagram-container svg,
+[data-theme="dark"] .diagram-container svg * {
+  fill: var(--neutral-100-dark) !important;
+  stroke: var(--neutral-0-dark) !important;
+}
+
+/* Utility Classes */
+.bg-neutral-0 { background-color: var(--neutral-0-light); }
+.bg-neutral-100 { background-color: var(--neutral-100-light); }
+.bg-neutral-200 { background-color: var(--neutral-200-light); }
+.bg-neutral-900 { background-color: var(--neutral-900-light); }
+.bg-neutral-1000 { background-color: var(--neutral-1000-light); }
+
+.text-neutral-0 { color: var(--neutral-0-light); }
+.text-neutral-100 { color: var(--neutral-100-light); }
+.text-neutral-200 { color: var(--neutral-200-light); }
+.text-neutral-900 { color: var(--neutral-900-light); }
+.text-neutral-1000 { color: var(--neutral-1000-light); }
+
+body.dark-mode .bg-neutral-0 { background-color: var(--neutral-0-dark); }
+body.dark-mode .bg-neutral-100 { background-color: var(--neutral-100-dark); }
+body.dark-mode .bg-neutral-200 { background-color: var(--neutral-200-dark); }
+body.dark-mode .bg-neutral-900 { background-color: var(--neutral-900-dark); }
+body.dark-mode .bg-neutral-1000 { background-color: var(--neutral-1000-dark); }
+
+body.dark-mode .text-neutral-0 { color: var(--neutral-0-dark); }
+body.dark-mode .text-neutral-100 { color: var(--neutral-100-dark); }
+body.dark-mode .text-neutral-200 { color: var(--neutral-200-dark); }
+body.dark-mode .text-neutral-900 { color: var(--neutral-900-dark); }
+body.dark-mode .text-neutral-1000 { color: var(--neutral-1000-dark); }
+
+/* Alert Bar Graph Specific Styles */
+.alert-bar-graph {
+  background-color: var(--neutral-0-light);
+  border: 1px solid var(--neutral-200-light);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .alert-bar-graph {
+  background-color: var(--neutral-100-dark);
+  border-color: var(--neutral-200-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
 @import "tailwindcss";

@@ -5,7 +5,25 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
+    <style>
+      @media (prefers-color-scheme:light){
+        body{
+          background-color: rgb(238, 240, 241);
+        }h1{
+          color:black;
+        }
+      }
+      @media (prefers-color-scheme:light){
+        body{
+          background-color: rgb(9, 9, 9);
+        }h1{
+          color:rgb(245, 245, 245);
+        }
+      }
+      
+    </style>
   </head>
+  <body class="darkmode"></body>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>

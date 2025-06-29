@@ -1,0 +1,426 @@
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.toggle-track {
+  width: 60px;
+  height: 30px;
+  background: #e5e7eb;
+  border-radius: 25px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode-toggle.dark .toggle-track {
+  background: #101010;
+}
+
+.toggle-thumb {
+  width: 26px;
+  height: 26px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark-mode-toggle.dark .toggle-thumb {
+  transform: translateX(30px);
+  background: #1f2937;
+}
+
+.toggle-icon {
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.dark-mode-toggle:hover .toggle-track {
+  transform: scale(1.05);
+}
+
+.dark-mode-toggle:active .toggle-track {
+  transform: scale(0.95);
+}
+
+/* Dark Mode Styles - Only Applied When .dark-mode Class is Present */
+.dark-mode body, 
+.dark-mode html {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode .navbar, 
+.dark-mode .header, 
+.dark-mode [class*="header"], 
+.dark-mode [class*="nav"] {
+  background: linear-gradient(135deg, #1e293b, #334155) !important;
+  border-bottom: 1px solid #475569 !important;
+  color: #f1f5f9 !important;
+}
+
+.dark-mode .container, 
+.dark-mode .main-content, 
+.dark-mode [class*="content"] {
+  background: #111112 !important;
+  color: #111112 !important;
+}
+
+.dark-mode .card, 
+.dark-mode .widget, 
+.dark-mode [class*="card"], 
+.dark-mode [class*="widget"], 
+.dark-mode [class*="panel"] {
+  background: linear-gradient(145deg, #2d3748, #4a5568) !important;
+  border: 1px solid #4a5568 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  color: #0d0d0e !important;
+  transition: all 0.3s ease;
+}
+
+.dark-mode h1, 
+.dark-mode h2, 
+.dark-mode h3, 
+.dark-mode h4, 
+.dark-mode h5, 
+.dark-mode h6, 
+.dark-mode .title, 
+.dark-mode .label, 
+.dark-mode [class*="title"], 
+.dark-mode [class*="label"] {
+  color: #161718 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-mode input, 
+.dark-mode select, 
+.dark-mode textarea, 
+.dark-mode .form-control, 
+.dark-mode [class*="input"] {
+  background: #272729 !important;
+  border: 1px solid #6b7280 !important;
+  color: #0e0e0f !important;
+  border-radius: 6px !important;
+}
+
+.dark-mode input:focus, 
+.dark-mode select:focus, 
+.dark-mode textarea:focus {
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1) !important;
+}
+
+.dark-mode .progress-bar, 
+.dark-mode [class*="progress"] {
+  background: rgba(55, 65, 81, 0.8) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+
+.dark-mode .progress-bar .fill, 
+.dark-mode [class*="progress"] .fill, 
+.dark-mode [class*="bar"] {
+  background: linear-gradient(90deg, #10b981, #34d399) !important;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3) !important;
+}
+
+.dark-mode .progress-bar.black .fill, 
+.dark-mode .progress-bar.danger .fill {
+  background: linear-gradient(90deg, #7d3838, #0f0f0f) !important;
+}
+
+.dark-mode .progress-bar.yellow .fill, 
+.dark-mode .progress-bar.warning .fill {
+  background: linear-gradient(90deg, #181717, #fbbf24) !important;
+}
+
+.dark-mode button, 
+.dark-mode .btn, 
+.dark-mode [class*="button"]:not(.dark-mode-toggle) {
+  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark-mode button:hover, 
+.dark-mode .btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
+}
+
+.dark-mode .diagram, 
+.dark-mode .schematic, 
+.dark-mode [class*="diagram"], 
+.dark-mode [class*="system"] {
+  background: #0d0d0e !important;
+  border: 1px solid #4a5568 !important;
+  border-radius: 10px !important;
+}
+
+.dark-mode svg {
+  filter: invert(0.9) hue-rotate(180deg) !important;
+}
+
+.dark-mode table, 
+.dark-mode .table {
+  background: #141515 !important;
+  color: #f9fafb !important;
+  border-collapse: collapse !important;
+}
+
+.dark-mode th, 
+.dark-mode .table-header {
+  background: #131314 !important;
+  color: #f3f4f6 !important;
+  border-bottom: 2px solid #6b7280 !important;
+}
+
+.dark-mode td, 
+.dark-mode .table-cell {
+  border-bottom: 1px solid #6b7280 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-mode tr:hover, 
+.dark-mode .table-row:hover {
+  background: rgba(75, 85, 99, 0.5) !important;
+}
+
+.dark-mode .status, 
+.dark-mode .indicator, 
+.dark-mode [class*="status"], 
+.dark-mode [class*="indicator"] {
+  border-radius: 20px !important;
+  padding: 4px 12px !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+
+.dark-mode .status.online, 
+.dark-mode .status.active, 
+.dark-mode .indicator.green {
+  background: #384c46 !important;
+  color: #a7f3d0 !important;
+  border: 1px solid #10b981 !important;
+}
+
+.dark-mode .status.warning, 
+.dark-mode .indicator.yellow {
+  background: #78350f !important;
+  color: #fde68a !important;
+  border: 1px solid #f59e0b !important;
+}
+
+.dark-mode .status.error, 
+.dark-mode .status.offline, 
+.dark-mode .indicator.red {
+  background: #7f1d1d !important;
+  color: #fecaca !important;
+  border: 1px solid #ef4444 !important;
+}
+
+.dark-mode .chart, 
+.dark-mode .graph, 
+.dark-mode [class*="chart"], 
+.dark-mode [class*="graph"] {
+  background: #374151 !important;
+  border: 1px solid #6b7280 !important;
+  border-radius: 8px !important;
+}
+
+.dark-mode .gauge, 
+.dark-mode .meter, 
+.dark-mode [class*="gauge"], 
+.dark-mode [class*="meter"] {
+  background: radial-gradient(circle, #374151, #1f2937) !important;
+  border: 2px solid #4b5563 !important;
+}
+
+.dark-mode .value, 
+.dark-mode .number, 
+.dark-mode [class*="value"], 
+.dark-mode [class*="number"] {
+  color: #f8fafc !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-mode .unit, 
+.dark-mode .secondary, 
+.dark-mode [class*="unit"], 
+.dark-mode [class*="secondary"] {
+  color: #cbd5e1 !important;
+}
+
+.dark-mode .alert, 
+.dark-mode .notification, 
+.dark-mode [class*="alert"], 
+.dark-mode [class*="notification"] {
+  background: rgba(55, 65, 81, 0.9) !important;
+  border: 1px solid #6b7280 !important;
+  border-radius: 8px !important;
+  color: #f3f4f6 !important;
+}
+
+.dark-mode .alert.success {
+  background: rgba(5, 95, 70, 0.9) !important;
+  border-color: #10b981 !important;
+  color: #a7f3d0 !important;
+}
+
+.dark-mode .alert.warning {
+  background: rgba(120, 53, 15, 0.9) !important;
+  border-color: #21201f !important;
+  color: #fde68a !important;
+}
+
+.dark-mode .alert.error {
+  background: rgba(18, 17, 17, 0.9) !important;
+  border-color: #ef4444 !important;
+  color: #fecaca !important;
+}
+
+.dark-mode .sidebar, 
+.dark-mode .nav-sidebar, 
+.dark-mode [class*="sidebar"] {
+  background: linear-gradient(180deg, #1e293b, #334155) !important;
+  border-right: 1px solid #475569 !important;
+}
+
+.dark-mode .nav-item, 
+.dark-mode .menu-item, 
+.dark-mode [class*="nav-item"], 
+.dark-mode [class*="menu-item"] {
+  color: #cbd5e1 !important;
+  transition: all 0.3s ease !important;
+}
+
+.dark-mode .nav-item:hover, 
+.dark-mode .menu-item:hover {
+  background: rgba(148, 163, 184, 0.1) !important;
+  color: #f1f5f9 !important;
+}
+
+.dark-mode .nav-item.active, 
+.dark-mode .menu-item.active {
+  background: rgba(59, 130, 246, 0.2) !important;
+  color: #60a5fa !important;
+  border-left: 3px solid #3b82f6 !important;
+}
+
+.dark-mode .modal, 
+.dark-mode .overlay, 
+.dark-mode [class*="modal"], 
+.dark-mode [class*="overlay"] {
+  background: rgba(15, 23, 42, 0.9) !important;
+}
+
+.dark-mode .modal-content, 
+.dark-mode .dialog, 
+.dark-mode [class*="modal-content"], 
+.dark-mode [class*="dialog"] {
+  background: #1e293b !important;
+  border: 1px solid #475569 !important;
+  border-radius: 12px !important;
+  color: #e2e8f0 !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-mode .search, 
+.dark-mode .filter, 
+.dark-mode [class*="search"], 
+.dark-mode [class*="filter"] {
+  background: #374151 !important;
+  border: 1px solid #6b7280 !important;
+  color: #f9fafb !important;
+  border-radius: 8px !important;
+}
+
+.dark-mode .dropdown, 
+.dark-mode .menu, 
+.dark-mode [class*="dropdown"], 
+.dark-mode [class*="menu"] {
+  background: #374151 !important;
+  border: 1px solid #6b7280 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-mode .dropdown-item, 
+.dark-mode .menu-item {
+  color: #e5e7eb !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.dark-mode .dropdown-item:hover, 
+.dark-mode .menu-item:hover {
+  background: #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+.dark-mode ::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: #1f2937 !important;
+  border-radius: 4px !important;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: #4b5563 !important;
+  border-radius: 4px !important;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280 !important;
+}
+
+.dark-mode .system-diagram, 
+.dark-mode .process-diagram {
+  background: #2d3748 !important;
+  padding: 20px !important;
+  border-radius: 10px !important;
+  border: 1px solid #4a5568 !important;
+}
+
+.dark-mode .param-value, 
+.dark-mode .metric-value {
+  background: rgba(59, 130, 246, 0.1) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  border-radius: 8px !important;
+  color: #bfdbfe !important;
+}
+
+.dark-mode .tooltip, 
+.dark-mode [class*="tooltip"] {
+  background: #1f2937 !important;
+  color: #f3f4f6 !important;
+  border: 1px solid #4b5563 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
