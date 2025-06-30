@@ -16,51 +16,27 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import ChatIcon from '@mui/icons-material/Chat';
+import TimelineIcon from '@mui/icons-material/Timeline'; // 🆕 Icon
 
-// Prevent 'collapsed' from being passed to the DOM
 const StyledListItemText = styled(ListItemText, {
   shouldForwardProp: (prop) => prop !== 'collapsed',
 })(({ collapsed }) => ({
-  display: collapsed ? 'none' : 'block',
-}));
-(({ collapsed }) => ({
   display: collapsed ? 'none' : 'block',
 }));
 
 function Sidebar({ collapsed }) {
   const location = useLocation();
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
   const menuItems = [
-    {
-      text: 'BLT',
-      path: '/BLT',
-      icon: <InfoIcon />,
-    },
-    {
-      text: 'Charging System',
-      path: '/Charging System',
-      icon: <HomeIcon />,
-    },
-    {
-      text: 'About',
-      path: '/about',
-      icon: <InfoIcon />,
-    },
-    {
-      text: 'Dashboard',
-      path: '/dashboard',
-      icon: <DashboardIcon />,
-    },
-    {
-      text: 'Media Gallery',
-      path: '/media-gallery',
-      icon: <CollectionsIcon />,
-    },
-    {
-      text: 'Chat Assistant', // ✅ new chatbot menu
-      path: '/chatbot',
-      icon: <ChatIcon />,
-    },
+    { text: 'Home', path: '/', icon: <HomeIcon /> },
+    { text: 'BLT', path: '/BLT', icon: <InfoIcon /> },
+    { text: 'Charging System', path: '/Charging System', icon: <HomeIcon /> },
+    { text: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
+    { text: 'Asset Timeline', path: '/blast-furnace/bf1/asset-timeline', icon: <TimelineIcon /> }, // ✅ NEW ITEM
+
+    { text: 'Chat Assistant', path: '/chatbot', icon: <ChatIcon /> },
+    { text: 'About', path: '/about', icon: <InfoIcon /> },
   ];
 
   return (
@@ -90,6 +66,7 @@ function Sidebar({ collapsed }) {
           </ListItemButton>
         </ListItem>
       ))}
+
       <ListItem disablePadding sx={{ display: 'block' }}>
         {isLoggedIn ? (
           <ListItemButton

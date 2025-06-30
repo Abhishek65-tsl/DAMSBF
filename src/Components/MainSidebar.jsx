@@ -15,6 +15,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import FactoryIcon from '@mui/icons-material/Factory';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import BuildIcon from '@mui/icons-material/Build';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import LockResetIcon from '@mui/icons-material/LockReset';
@@ -122,6 +123,21 @@ function MainSidebar({ collapsed }) {
             ))}
           </List>
         </Collapse>
+      </ListItem>
+
+      {/* ✅ Admin Dashboard */}
+      <ListItem disablePadding sx={{ display: 'block' }}>
+        <ListItemButton
+          component={Link}
+          to="/admin-dashboard"
+          selected={location.pathname === '/admin-dashboard'}
+          sx={{ minHeight: 48, justifyContent: collapsed ? 'center' : 'initial', px: 2.5 }}
+        >
+          <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 'auto' : 3, justifyContent: 'center' }}>
+            <DashboardIcon />
+          </ListItemIcon>
+          <StyledListItemText primary="Admin Dashboard" collapsed={collapsed} />
+        </ListItemButton>
       </ListItem>
 
       {/* Login/Logout Section */}

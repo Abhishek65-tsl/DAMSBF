@@ -15,42 +15,20 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import ChatIcon from '@mui/icons-material/Chat';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import TimelineIcon from '@mui/icons-material/Timeline'; // 🆕 icon for Asset Timeline
 
 function SectionSidebar({ collapsed }) {
   const location = useLocation();
-  // const { sectionId } = useParams();
+  const base = `/${location.pathname.split('/')[1]}/${location.pathname.split('/')[2]}`;
 
   const menuItems = [
-    {
-      text: 'BLT',
-      path: `/${location.pathname.split('/')[1]}/${location.pathname.split('/')[2]}/BLT`,
-      icon: <InfoIcon />,
-    },
-    {
-      text: 'Charging System',
-      path: `/${location.pathname.split('/')[1]}/${location.pathname.split('/')[2]}/Charging System`,
-      icon: <HomeIcon />,
-    },
-    {
-      text: 'About',
-      path: `/${location.pathname.split('/')[1]}/${location.pathname.split('/')[2]}/about`,
-      icon: <InfoIcon />,
-    },
-    {
-      text: 'Dashboard',
-      path: `/${location.pathname.split('/')[1]}/${location.pathname.split('/')[2]}/dashboard`,
-      icon: <DashboardIcon />,
-    },
-    {
-      text: 'Media Gallery',
-      path: `/${location.pathname.split('/')[1]}/${location.pathname.split('/')[2]}/media-gallery`,
-      icon: <CollectionsIcon />,
-    },
-    {
-      text: 'Chat Assistant',
-      path: `/${location.pathname.split('/')[1]}/${location.pathname.split('/')[2]}/chatbot`,
-      icon: <ChatIcon />,
-    },
+    { text: 'BLT', path: `${base}/BLT`, icon: <InfoIcon /> },
+    { text: 'Charging System', path: `${base}/Charging System`, icon: <HomeIcon /> },
+    { text: 'Dashboard', path: `${base}/dashboard`, icon: <DashboardIcon /> },
+    { text: 'Asset Timeline', path: `${base}/asset-timeline`, icon: <TimelineIcon /> }, // ✅ NEW ITEM
+
+    { text: 'Chat Assistant', path: `${base}/chatbot`, icon: <ChatIcon /> },
+    { text: 'About', path: `${base}/about`, icon: <InfoIcon /> },
   ];
 
   const sectionLabel = location.pathname.split('/')[2]?.toUpperCase();
