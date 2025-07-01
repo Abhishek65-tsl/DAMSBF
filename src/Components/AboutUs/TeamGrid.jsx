@@ -1,14 +1,14 @@
 // src/components/AboutUs/TeamGrid.jsx
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Box, Typography, Avatar, Grid, Link, Stack, Tooltip } from '@mui/material';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import abhishekimg from '../../assets/images/abhishek.jpeg';
-import lisaImg from '../../assets/images/lisa.jpeg';
-import advaitImg from '../../assets/images/advait.jpeg';
-import muskanImg from '../../assets/images/muskan.jpeg';
-import krishImg from '../../assets/images/krish.jpeg';
-import priyanshuImg from '../../assets/images/priyanshu.jpeg';
-import suvidyaImg from '../../assets/images/suvidya.jpeg';
+import abhishekimg from '../../assets/Images/abhishek.jpeg';
+import lisaImg from '../../assets/Images/lisa.jpeg';
+import advaitImg from '../../assets/Images/advait.jpeg';
+import muskanImg from '../../assets/Images/muskan.jpeg';
+import krishImg from '../../assets/Images/krish.jpeg';
+import priyanshuImg from '../../assets/Images/priyanshu.jpeg';
+import suvidyaImg from '../../assets/Images/suvidya.jpeg';
 
 
 
@@ -89,7 +89,7 @@ export default function TeamGrid() {
       <Grid container spacing={2} justifyContent="center" wrap="nowrap" sx={{ overflowX: 'auto', paddingX: 2 }}>
         {team.map((member, index) => (
           <Grid item key={index} sx={{ flex: '0 0 auto', maxWidth: 230 }}>
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, y: index % 2 === 0 ? -50 : 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2, type: 'spring', stiffness: 100 }}
@@ -139,7 +139,7 @@ export default function TeamGrid() {
                   </Link>
                 </Stack>
               </Box>
-            </motion.div>
+            </Motion.div>
           </Grid>
         ))}
       </Grid>
