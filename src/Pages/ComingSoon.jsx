@@ -1,16 +1,17 @@
+import React from 'react'
 import { Typography, Box } from '@mui/material';
 
-function About() {
+function ComingSoon() {
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" gutterBottom>
-        About Us
+        COMING SOON
       </Typography>
       <Typography variant="body1">
-        This is a simple about page.
+        This page is coming soon.
       </Typography>
     </Box>
-  );
+  )
 }
 
-export default About;
+export default ComingSoon
