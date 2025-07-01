@@ -3,7 +3,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import TeamGrid from '../Components/AboutUs/TeamGrid';
 import FooterContact from '../Components/AboutUs/FooterContact';
 import ParticleBackground from '../Components/AboutUs/ParticleBackground';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 export default function AboutUs() {
   return (
@@ -17,7 +17,7 @@ export default function AboutUs() {
 
           {/* Tech Stack Card */}
           <Grid item xs={12} md={3}>
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, filter: 'blur(6px)', y: 20 }}
               animate={{ opacity: 1, filter: 'blur(0)', y: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
@@ -41,7 +41,7 @@ export default function AboutUs() {
                   <li>🗄️ MongoDB</li>
                 </ul>
               </Box>
-            </motion.div>
+            </Motion.div>
           </Grid>
 
           {/* About Us Center Text */}
@@ -66,7 +66,7 @@ export default function AboutUs() {
 
           {/* Timeline Card */}
           <Grid item xs={12} md={3}>
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, filter: 'blur(6px)', y: -20 }}
               animate={{ opacity: 1, filter: 'blur(0)', y: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -92,7 +92,7 @@ export default function AboutUs() {
                   <li><strong>15 July 2025:</strong> Successfully Deployed</li>
                 </ul>
               </Box>
-            </motion.div>
+            </Motion.div>
           </Grid>
         </Grid>
 
