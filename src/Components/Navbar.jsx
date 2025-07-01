@@ -156,9 +156,9 @@ function Navbar({ handleDrawerToggle }) {
 
   };
 
-  const handleLogout = () => {
-    alert('Logged out!');
-  };
+  // const handleLogout = () => {
+  //   alert('Logged out!');
+  // };
 
   useEffect(() => {
     if (hasVisitedRef.current) return; // ✅ prevent multiple calls

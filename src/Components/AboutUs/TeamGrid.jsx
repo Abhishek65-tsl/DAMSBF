@@ -1,5 +1,5 @@
 // src/components/AboutUs/TeamGrid.jsx
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Box, Typography, Avatar, Grid, Link, Stack, Tooltip } from '@mui/material';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import abhishekimg from '../../assets/images/abhishek.jpeg';
@@ -89,7 +89,7 @@ export default function TeamGrid() {
       <Grid container spacing={2} justifyContent="center" wrap="nowrap" sx={{ overflowX: 'auto', paddingX: 2 }}>
         {team.map((member, index) => (
           <Grid item key={index} sx={{ flex: '0 0 auto', maxWidth: 230 }}>
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, y: index % 2 === 0 ? -50 : 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2, type: 'spring', stiffness: 100 }}
@@ -139,7 +139,7 @@ export default function TeamGrid() {
                   </Link>
                 </Stack>
               </Box>
-            </motion.div>
+            </Motion.div>
           </Grid>
         ))}
       </Grid>
