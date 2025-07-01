@@ -14,7 +14,6 @@ import OperationMaintenanceTable from "../../Components/OperationMaintenanceTabl
 import TrendAnalysisModal from "../../Components/TrendAnalysisModal";
 // import OverallHealthPanel from "../../Components/OverallHealthPanel";
 
-
 const IndustrialDashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedParameter, setSelectedParameter] = useState(null);
@@ -31,7 +30,6 @@ const IndustrialDashboard = () => {
   };
 
   const parameters = [
-
     {
       title: "Wind Volume(Nm³/hr)",
       amount: "33629.1",
@@ -139,21 +137,19 @@ const IndustrialDashboard = () => {
       ucl: 80.0,
       lcl: 30.0,
     },
-
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl px-2 mx-auto py-2">
-
-        <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-4">
           {/* Left Parameters */}
           <div className="col-span-1 bg-white rounded-lg shadow-sm border p-2">
             <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
               {/* <span className="w-3 h-5">⚙️</span>  */}
               PARAMETERS
             </h2>
-            <div className="space-y-1.5">
+            <div className="space-y-5">
               {parameters.slice(0, 7).map((param, index) => (
                 <InfoCardComponent
                   key={index}
@@ -161,50 +157,42 @@ const IndustrialDashboard = () => {
                   size="small"
                   onClick={() => handleCardClick(param)}
                 />
-
               ))}
             </div>
           </div>
 
           {/* Image + Mid Params */}
           <div className="col-span-3 flex flex-col gap-2 relative">
-
-
             {/*  Added OperationMaintenanceTable above BLT image */}
             <div className="bg-white border p-2 rounded-lg">
               <OperationMaintenanceTable />
             </div>
 
             <div className="bg-white  p-1">
-
               <div
                 className="relative mx-auto"
                 style={{ width: "540px", height: "600px" }}
               >
-
                 <img
                   src={BLT}
                   alt="BLT Diagram"
                   className="object-contain rounded-md"
-
-
                   style={{ width: "85%", height: "85%" }}
-
                 />
                 <ParticleAnimation />
               </div>
             </div>
 
             {/* Bottom Parameters below image */}
-            <div className="flex justify-around bg-white rounded-lg shadow-sm border p-4 -mt-18">
+            <div className="flex justify-between bg-white rounded-lg shadow-sm border p-4 -mt-18 gap-1">
               {parameters.slice(7, 10).map((param, index) => (
                 <InfoCardComponent
                   key={index}
                   {...param}
                   size="small"
                   onClick={() => handleCardClick(param)}
+                  className=""
                 />
-
               ))}
             </div>
           </div>
@@ -212,11 +200,10 @@ const IndustrialDashboard = () => {
           {/* Right Parameters */}
           <div className="col-span-1 bg-white rounded-lg shadow-sm border p-2">
             <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-
               {/* <span className="w-3 h-5">⚙️</span>  */}
               PARAMETERS
             </h2>
-            <div className="space-y-1.5">
+            <div className="space-y-5">
               {parameters.slice(10, 18).map((param, index) => (
                 <InfoCardComponent
                   key={index}
@@ -224,16 +211,13 @@ const IndustrialDashboard = () => {
                   size="small"
                   onClick={() => handleCardClick(param)}
                 />
-
               ))}
             </div>
           </div>
 
-
-
           {/* Visualization Panel with AlertSummaryBox ..overall health..and Graphs */}
-          <div className="col-span-2 p-2 h-full flex flex-col gap-4">
-          {/* <div className="flex gap-40">
+          <div className="col-span-1 p-2 h-full flex flex-col gap-4">
+            {/* <div className="flex gap-40">
             <div className="w-1/2 p-2">
               <ComplianceBarGraph title="SAP PM MO Compliance" />
               <ComplianceBarGraph title="SAP PM NO Compliance" />
@@ -248,7 +232,6 @@ const IndustrialDashboard = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
       <TrendAnalysisModal

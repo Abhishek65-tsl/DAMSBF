@@ -11,6 +11,8 @@ import MediaGallery from "../Pages/MediaGallery";
 import ChatBot from "../Pages/ChatBot";
 import ComingSoon from "../Pages/ComingSoon";
 import AboutUs from "../Pages/AboutUs"; // ✅ Correct location now
+import AdminDashboard from "../Pages/AdminDashboard";
+import AssetTimeline from "../Pages/AssetTimeline";
 
 const routes = [
   {
@@ -23,6 +25,7 @@ const routes = [
       { path: "blast-furnace/bf1/about", element: <AboutUs /> }, // ✅ correct usage
       { path: "blast-furnace/bf1/media-gallery", element: <MediaGallery /> },
       { path: "blast-furnace/bf1/chatbot", element: <ChatBot /> },
+      { path: "blast-furnace/bf1/asset-timeline", element: <AssetTimeline /> },
       { path: "blast-furnace/bf2", element: <ComingSoon /> },
       { path: "caster/c1", element: <ComingSoon /> },
       { path: "caster/c2", element: <ComingSoon /> },
@@ -30,6 +33,7 @@ const routes = [
       { path: "bof/bof1", element: <ComingSoon /> },
       { path: "bof/bof3", element: <ComingSoon /> },
       { path: "bof/bof2", element: <ComingSoon /> },
+      { path: "admin-dashboard", element: <AdminDashboard /> },
       { path: "*", element: <NotFound /> },
     ],
   },
@@ -37,6 +41,7 @@ const routes = [
   { path: "/signout", element: <SignOutPage /> },
   { path: "/reset", element: <ResetPasswordPage /> },
   { path: "/signedout", element: <SignedOutPage /> },
+  
 ];
 
 export default routes;
