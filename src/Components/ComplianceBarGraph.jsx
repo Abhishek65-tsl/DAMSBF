@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ComplianceBarGraph = ({ value = 73 }) => {
+const ComplianceBarGraph = ({ value = 73 , title = "Compliance Chart"}) => {
   const maxValue = 100;
-  const barHeight = 115;
+  const barHeight = 110;
   const barWidth = 40;
 
   const computedHeight = (value / maxValue) * barHeight;
@@ -11,9 +11,15 @@ const ComplianceBarGraph = ({ value = 73 }) => {
     <div
       style={{
         width: 250,
+<<<<<<< HEAD
         height: 200,
           marginTop: '-20px',       // ← move down (negative like "-10px" to move up)
           marginLeft: '80px',      // ← move right (negative to move left)
+=======
+        height: 180,
+          marginTop: '5px',       // ← move down (negative like "-10px" to move up)
+          marginLeft: '15px',      // ← move right (negative to move left)
+>>>>>>> feature/Advaita-Vedanta/Making-UI
         border: '0px solid #ccc',
         padding: '10px',
         boxSizing: 'none',
@@ -26,7 +32,7 @@ const ComplianceBarGraph = ({ value = 73 }) => {
     >
       {/* Title */}
       <div style={{ textAlign: 'center', fontWeight: 'bold', marginBottom: 10 }}>
-        SAP PM MO Compliance
+        {title}
       </div>
 
       {/* Y-axis Labels */}
