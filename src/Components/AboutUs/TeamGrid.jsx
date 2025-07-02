@@ -10,16 +10,12 @@ import krishImg from '../../assets/Images/krish.jpeg';
 import priyanshuImg from '../../assets/Images/priyanshu.jpeg';
 import suvidyaImg from '../../assets/Images/suvidya.jpeg';
 
-
-
-
-
 const team = [
   {
     name: 'Abhishek Kumar',
     role: 'Project Mentor',
     github: 'https://github.com/Abhishek65-tsl/DAMSBF',
-    linkedin: 'https://www.linkedin.com/in/abhishek-kumar-a4586b190?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+    linkedin: 'https://www.linkedin.com/in/abhishek-kumar-a4586b190',
     img: abhishekimg,
     color: '#d6e0f0',
     bio: 'Guided us throughout with invaluable insights and support.',
@@ -64,7 +60,7 @@ const team = [
     name: 'Priyanshu Bhusan',
     role: 'AI Integration',
     github: 'https://github.com/vi-jigishu',
-    linkedin: 'https://www.linkedin.com/in/priyanshu-bhusan-457188254?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+    linkedin: 'https://www.linkedin.com/in/priyanshu-bhusan-457188254',
     img: priyanshuImg,
     color: '#fff9db',
     bio: 'Brings intelligent solutions to life through AI integration.',
@@ -73,7 +69,7 @@ const team = [
     name: 'Suvidya Tiwari',
     role: 'UI/UX Designer',
     github: 'https://github.com/suviivanillin',
-    linkedin: 'https://www.linkedin.com/in/suvidya-tiwari-564621341?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
+    linkedin: 'https://www.linkedin.com/in/suvidya-tiwari-564621341',
     img: suvidyaImg,
     color: '#daf0f7',
     bio: 'Strives for seamless and joyful user experiences.',
@@ -82,13 +78,27 @@ const team = [
 
 export default function TeamGrid() {
   return (
-    <Box sx={{ textAlign: 'center', py: 0 }}>
+    <Box sx={{ textAlign: 'center', py: 4, px: { xs: 2, sm: 4, md: 6 } }}>
       <Typography variant="h4" gutterBottom sx={{ color: '#003366', fontWeight: 'bold' }}>
         Our Team
       </Typography>
-      <Grid container spacing={2} justifyContent="center" wrap="nowrap" sx={{ overflowX: 'auto', paddingX: 2 }}>
+      <Grid
+        container
+        spacing={3}
+        justifyContent="center"
+        sx={{ width: '100%' }}
+      >
         {team.map((member, index) => (
-          <Grid item key={index} sx={{ flex: '0 0 auto', maxWidth: 230 }}>
+          <Grid
+            item
+            key={index}
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={2}
+            sx={{ display: 'flex', justifyContent: 'center' }}
+          >
             <Motion.div
               initial={{ opacity: 0, y: index % 2 === 0 ? -50 : 50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -103,6 +113,7 @@ export default function TeamGrid() {
                   textAlign: 'center',
                   transition: 'transform 0.3s, box-shadow 0.3s',
                   height: 300,
+                  width: 200,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -118,7 +129,9 @@ export default function TeamGrid() {
                   alt={member.name}
                   sx={{ width: 80, height: 80, mb: 2, border: '3px solid #003366' }}
                 />
-                <Typography variant="h6" sx={{ color: '#003366' }}>{member.name}</Typography>
+                <Typography variant="h6" sx={{ color: '#003366' }}>
+                  {member.name}
+                </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {member.role}
                 </Typography>

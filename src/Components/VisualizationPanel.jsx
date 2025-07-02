@@ -130,7 +130,7 @@ const VisualizationPanel = () => {
         boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
         zIndex: "1",
         fontFamily: "sans-serif",
-        height: "460px",
+        height: "430px",
       }}
     >
       {/* Overall Health Gauge */}
@@ -141,11 +141,11 @@ const VisualizationPanel = () => {
             fontWeight: "700",
             color: "#333",
             textAlign: "center",
-            marginBottom: "2px",
+            marginBottom: "0.5px",
             justifyItems: "center",
             display: "flex",
             alignItems: "center",
-            marginLeft: "90px",
+            marginLeft: "50px",
             width: "100%",
             position: "relative",
           }}
@@ -156,7 +156,7 @@ const VisualizationPanel = () => {
       </div>
 
       {/* System-wise Health */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
 
         {systems.map((sys, index) => (
           <div
@@ -169,8 +169,8 @@ const VisualizationPanel = () => {
               boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
               minHeight: "48px",
               fontSize: "12px",
-              marginBottom: "4px",
-              marginTop: "4px",
+              marginBottom: "2px",
+              marginTop: "2px",
             }}
           >
             <div

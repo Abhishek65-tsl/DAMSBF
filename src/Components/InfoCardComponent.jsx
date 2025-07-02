@@ -1,8 +1,8 @@
 import React from "react";
 
-const InfoCardComponent = ({ 
-  title, 
-  amount, 
+const InfoCardComponent = ({
+  title,
+  amount,
   value = 0,
   ucl = null,
   lcl = null,
@@ -10,29 +10,29 @@ const InfoCardComponent = ({
   titleColor = "text-gray-600",
   amountColor = "text-black",
   size = "normal",
-  onClick
+  onClick,
 }) => {
   const getBackgroundColor = () => {
     if (backgroundColor) return backgroundColor;
-    if (ucl === null || lcl === null) return '#f8fafc';
-    
+    if (ucl === null || lcl === null) return "#f8fafc";
+
     if (value >= lcl && value <= ucl) {
-      return '#d1f2eb';
+      return "#d1f2eb";
     } else {
       const upperDeviation = value > ucl ? (value - ucl) / ucl : 0;
       const lowerDeviation = value < lcl ? (lcl - value) / lcl : 0;
       const maxDeviation = Math.max(upperDeviation, lowerDeviation);
-      
+
       if (maxDeviation < 0.2) {
-        return '#fef9e7';
+        return "#fef9e7";
       } else {
-        return '#fadbd8';
+        return "#fadbd8";
       }
     }
   };
 
   const cardSize = size === "small" ? "p-3" : "p-4";
-  const titleSize = size === "small" ? "text-xs" : "text-sm";
+  const titleSize = size === "small" ? "text-sm" : "text-sm";
   const amountSize = size === "small" ? "text-lg" : "text-xl";
 
   // Calculate progress for the bar
@@ -49,9 +49,10 @@ const InfoCardComponent = ({
   }
 
   return (
-    <div 
+    <div
       className={`rounded-lg ${cardSize} shadow-sm border border-gray-200 hover:shadow-md transition-shadow`}
-      style={{ backgroundColor: getBackgroundColor() }} onClick={onClick}
+      style={{ backgroundColor: getBackgroundColor() }}
+      onClick={onClick}
     >
       <h3 className={`${titleColor} ${titleSize} font-medium mb-0.5`}>
         {title}
@@ -60,24 +61,28 @@ const InfoCardComponent = ({
         {amount}
       </div>
       {(ucl !== null || lcl !== null) && (
-        <div className="mt-0.5">
-          <div className="flex justify-between text-xs text-gray-500 mb-0.5">
+        <div className="mt-2">
+          {/* <div className="flex justify-between text-xs text-gray-500 mb-0.5">
             <span>Progress</span>
-            <span>{progressPercentage.toFixed(0)}%</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-1">
+            
+          </div> */}
+
+          <div className="w-full bg-gray-200 rounded-full h-1 flex items-center justify-between">
             <div
               className="h-1 rounded-full"
               style={{
                 width: `${progressPercentage}%`,
-                backgroundColor: 
+                backgroundColor:
                   value >= lcl && value <= ucl
-                    ? '#10B981' // Green for within limits
+                    ? "#10B981" // Green for within limits
                     : value > ucl || value < lcl
-                    ? '#EF4444' // Red for outside limits
-                    : '#F59E0B' // Yellow for other cases (e.g., close to limits or default)
+                    ? "#EF4444" // Red for outside limits
+                    : "#F59E0B", // Yellow for other cases (e.g., close to limits or default)
               }}
             ></div>
+            <div className="flex justify-between text-xs text-gray-500 mb-0.5">
+              <span>{progressPercentage.toFixed(0)}%</span>
+            </div>
           </div>
         </div>
       )}
