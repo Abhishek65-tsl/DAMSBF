@@ -1,4 +1,5 @@
-// src/routes/routes.jsx
+// src/routes.jsx
+
 import Layout from "../Components/Layout";
 import Home from "../Pages/Home";
 import BLT from "../Pages/BLT";
@@ -11,9 +12,13 @@ import SignedOutPage from "../Pages/SignedOutPage";
 import ChatBot from "../Pages/ChatBot";
 import ComingSoon from "../Pages/ComingSoon";
 
-// ✅ Correct imports
+// Pages for Admin and Furnace Systems
 import AdminDashboard from "../Pages/AdminDashboard";
 import AssetTimeline from "../Pages/AssetTimeline";
+import FurnaceOverview from "../Pages/FurnaceOverview";
+import HotBlastfurnace from "../Pages/HotBlast";
+import TuyereNose from "../Pages/TuyereNose";
+import TuyereNose2 from "../Pages/TuyereNose2"; // ✅ Tuyere Nose System 2
 
 const routes = [
   {
@@ -21,32 +26,40 @@ const routes = [
     element: <Layout />,
     children: [
       { path: "", element: <Home /> },
+
+      // Blast Furnace Routes
       { path: "blast-furnace/bf1/", element: <BLT /> },
       { path: "blast-furnace/bf1/BLT", element: <BLT /> },
       { path: "blast-furnace/bf1/about", element: <About /> },
       { path: "blast-furnace/bf1/chatbot", element: <ChatBot /> },
-
-      // ✅ Fixed route for AssetTimeline (matching sidebar)
       { path: "blast-furnace/bf1/asset-timeline", element: <AssetTimeline /> },
-
-      // ❌ MediaGallery removed
-
-      // Placeholder routes
       { path: "blast-furnace/bf2", element: <ComingSoon /> },
+
+      // Caster Routes
       { path: "caster/c1", element: <ComingSoon /> },
       { path: "caster/c2", element: <ComingSoon /> },
       { path: "caster/c3", element: <ComingSoon /> },
+
+      // BOF Routes
       { path: "bof/bof1", element: <ComingSoon /> },
       { path: "bof/bof2", element: <ComingSoon /> },
       { path: "bof/bof3", element: <ComingSoon /> },
 
-      // Admin dashboard
+      // Furnace Routes
+      { path: "furnace/overview", element: <FurnaceOverview /> },
+      { path: "furnace/hot-blast-flow", element: <HotBlastfurnace /> },
+      { path: "furnace/tuyere-nose-system-1", element: <TuyereNose /> },
+      { path: "furnace/tuyere-nose-system-2", element: <TuyereNose2 /> }, // ✅ Added properly
+
+      // Admin
       { path: "admin-dashboard", element: <AdminDashboard /> },
 
-      // Catch-all
+      // Not Found
       { path: "*", element: <NotFound /> },
     ],
   },
+
+  // Auth Routes (outside Layout)
   { path: "/login", element: <LoginPage /> },
   { path: "/signout", element: <SignOutPage /> },
   { path: "/reset", element: <ResetPasswordPage /> },

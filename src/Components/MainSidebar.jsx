@@ -1,4 +1,3 @@
-// src/components/MainSidebar.jsx
 import React, { useState } from 'react';
 import {
   List,
@@ -19,6 +18,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import LockResetIcon from '@mui/icons-material/LockReset';
+import WhatshotIcon from '@mui/icons-material/Whatshot'; // Furnace icon
 
 const StyledListItemText = styled(ListItemText, {
   shouldForwardProp: (prop) => prop !== 'collapsed',
@@ -34,6 +34,7 @@ function MainSidebar({ collapsed }) {
     bf: false,
     caster: false,
     bof: false,
+    furnace: false,
   });
 
   const toggleMenu = (key) => {
@@ -125,7 +126,54 @@ function MainSidebar({ collapsed }) {
         </Collapse>
       </ListItem>
 
-      {/* ✅ Admin Dashboard */}
+      {/* Furnace */}
+      <ListItem disablePadding sx={{ display: 'block' }}>
+        <ListItemButton onClick={() => toggleMenu('furnace')}>
+          <ListItemIcon>
+            <WhatshotIcon />
+          </ListItemIcon>
+          {!collapsed && <ListItemText primary="Furnace" />}
+          {!collapsed && (openMenus.furnace ? <ExpandLess /> : <ExpandMore />)}
+        </ListItemButton>
+        <Collapse in={openMenus.furnace} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton
+              component={Link}
+              to="/furnace/overview"
+              selected={location.pathname.startsWith('/furnace/overview')}
+              sx={{ pl: collapsed ? 2 : 4 }}
+            >
+              <ListItemText primary="Furnace Overview" />
+            </ListItemButton>
+            <ListItemButton
+              component={Link}
+              to="/furnace/hot-blast-flow"
+              selected={location.pathname.startsWith('/furnace/hot-blast-flow')}
+              sx={{ pl: collapsed ? 2 : 4 }}
+            >
+              <ListItemText primary="Hot Blast Flow" />
+            </ListItemButton>
+            <ListItemButton
+              component={Link}
+              to="/furnace/tuyere-nose-system-1"
+              selected={location.pathname.startsWith('/furnace/tuyere-nose-system-1')}
+              sx={{ pl: collapsed ? 2 : 4 }}
+            >
+              <ListItemText primary="Tuyere Nose Sys 1" />
+            </ListItemButton>
+            <ListItemButton
+              component={Link}
+              to="/furnace/tuyere-nose-system-2"
+              selected={location.pathname.startsWith('/furnace/tuyere-nose-system-2')}
+              sx={{ pl: collapsed ? 2 : 4 }}
+            >
+              <ListItemText primary="Tuyere Nose Sys 2" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+      </ListItem>
+
+      {/* Admin Dashboard */}
       <ListItem disablePadding sx={{ display: 'block' }}>
         <ListItemButton
           component={Link}
@@ -140,7 +188,7 @@ function MainSidebar({ collapsed }) {
         </ListItemButton>
       </ListItem>
 
-      {/* Login/Logout Section */}
+      {/* Login/Logout */}
       <ListItem disablePadding sx={{ display: 'block' }}>
         {isLoggedIn ? (
           <>
