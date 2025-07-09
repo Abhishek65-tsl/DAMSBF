@@ -17,7 +17,6 @@ const data = [
   { month: "Fri", value: 500 },
   { month: "Sat", value: 800 },
   { month: "Sun", value: 700 },
-  
 ];
 
 export default function TrendChart() {
@@ -54,5 +53,5 @@ export default function TrendChart() {
         />
       </AreaChart>
     </ResponsiveContainer>
-  );
+  );
 }

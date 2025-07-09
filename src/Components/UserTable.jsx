@@ -21,10 +21,18 @@ export default function UserTable() {
       <Table aria-label="user table">
         <TableHead>
           <TableRow>
-            <TableCell><strong>ID</strong></TableCell>
-            <TableCell><strong>Name</strong></TableCell>
-            <TableCell><strong>Role</strong></TableCell>
-            <TableCell><strong>Status</strong></TableCell>
+            <TableCell>
+              <strong>ID</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Name</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Role</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Status</strong>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -34,10 +42,10 @@ export default function UserTable() {
               <TableCell>{user.name}</TableCell>
               <TableCell>{user.role}</TableCell>
               <TableCell>{user.status}</TableCell>
-</TableRow>
+            </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-  );
+  );
 }
