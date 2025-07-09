@@ -40,7 +40,10 @@ export default function AdminDashboard() {
       <Grid container spacing={6} sx={{ mb: 6 }}>
         {/* User Table */}
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} sx={{ p: 3, backgroundColor: "#152f4f", color: "#ffffff" }}>
+          <Paper
+            elevation={3}
+            sx={{ p: 3, backgroundColor: "#152f4f", color: "#ffffff" }}
+          >
             <Typography variant="h6" gutterBottom>
               User Management
             </Typography>
@@ -60,20 +63,23 @@ export default function AdminDashboard() {
             }}
           >
             <Typography variant="h6" gutterBottom>
-Latest Alerts
+              Latest Alerts
             </Typography>
             <AlertTable />
           </Paper>
-        </Grid> 
+        </Grid>
       </Grid>
 
       {/* Trend Chart */}
-      <Paper elevation={3} sx={{ p: 3, backgroundColor: "#152f4f", color: "#ffffff" }}>
+      <Paper
+        elevation={3}
+        sx={{ p: 3, backgroundColor: "#152f4f", color: "#ffffff" }}
+      >
         <Typography variant="h6" gutterBottom>
           System Trends
         </Typography>
         <TrendChart />
       </Paper>
-    </Box>
-  );
+    </Box>
+  );
 }

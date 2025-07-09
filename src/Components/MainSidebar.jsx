@@ -1,5 +1,5 @@
 // src/components/MainSidebar.jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   List,
   ListItem,
@@ -8,32 +8,34 @@ import {
   ListItemText,
   Collapse,
   styled,
-} from '@mui/material';
-import { Link, useLocation } from 'react-router-dom';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import FactoryIcon from '@mui/icons-material/Factory';
-import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
-import BuildIcon from '@mui/icons-material/Build';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import LogoutIcon from '@mui/icons-material/Logout';
-import LoginIcon from '@mui/icons-material/Login';
-import LockResetIcon from '@mui/icons-material/LockReset';
+} from "@mui/material";
+import { Link, useLocation } from "react-router-dom";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import FactoryIcon from "@mui/icons-material/Factory";
+import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
+import BuildIcon from "@mui/icons-material/Build";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
+import LockResetIcon from "@mui/icons-material/LockReset";
+import WhatshotIcon from "@mui/icons-material/Whatshot"; // Furnace icon
 
 const StyledListItemText = styled(ListItemText, {
-  shouldForwardProp: (prop) => prop !== 'collapsed',
+  shouldForwardProp: (prop) => prop !== "collapsed",
 })(({ collapsed }) => ({
-  display: collapsed ? 'none' : 'block',
+  display: collapsed ? "none" : "block",
 }));
 
 function MainSidebar({ collapsed }) {
   const location = useLocation();
-  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   const [openMenus, setOpenMenus] = useState({
     bf: false,
     caster: false,
     bof: false,
+    furnace: false,
   });
 
   const toggleMenu = (key) => {
@@ -43,8 +45,8 @@ function MainSidebar({ collapsed }) {
   return (
     <List>
       {/* Blast Furnace */}
-      <ListItem disablePadding sx={{ display: 'block' }}>
-        <ListItemButton onClick={() => toggleMenu('bf')}>
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton onClick={() => toggleMenu("bf")}>
           <ListItemIcon>
             <FactoryIcon />
           </ListItemIcon>
@@ -56,7 +58,7 @@ function MainSidebar({ collapsed }) {
             <ListItemButton
               component={Link}
               to="/blast-furnace/bf1"
-              selected={location.pathname.startsWith('/blast-furnace/bf1')}
+              selected={location.pathname.startsWith("/blast-furnace/bf1")}
               sx={{ pl: collapsed ? 2 : 4 }}
             >
               <ListItemText primary="BF1" />
@@ -64,7 +66,7 @@ function MainSidebar({ collapsed }) {
             <ListItemButton
               component={Link}
               to="/blast-furnace/bf2"
-              selected={location.pathname.startsWith('/blast-furnace/bf2')}
+              selected={location.pathname.startsWith("/blast-furnace/bf2")}
               sx={{ pl: collapsed ? 2 : 4 }}
             >
               <ListItemText primary="BF2" />
@@ -74,8 +76,8 @@ function MainSidebar({ collapsed }) {
       </ListItem>
 
       {/* Caster */}
-      <ListItem disablePadding sx={{ display: 'block' }}>
-        <ListItemButton onClick={() => toggleMenu('caster')}>
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton onClick={() => toggleMenu("caster")}>
           <ListItemIcon>
             <PrecisionManufacturingIcon />
           </ListItemIcon>
@@ -100,8 +102,8 @@ function MainSidebar({ collapsed }) {
       </ListItem>
 
       {/* BOF */}
-      <ListItem disablePadding sx={{ display: 'block' }}>
-        <ListItemButton onClick={() => toggleMenu('bof')}>
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton onClick={() => toggleMenu("bof")}>
           <ListItemIcon>
             <BuildIcon />
           </ListItemIcon>
@@ -124,16 +126,80 @@ function MainSidebar({ collapsed }) {
           </List>
         </Collapse>
       </ListItem>
-      
+
+      {/* Furnace */}
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton onClick={() => toggleMenu("furnace")}>
+          <ListItemIcon>
+            <WhatshotIcon />
+          </ListItemIcon>
+          {!collapsed && <ListItemText primary="Furnace" />}
+          {!collapsed && (openMenus.furnace ? <ExpandLess /> : <ExpandMore />)}
+        </ListItemButton>
+        <Collapse in={openMenus.furnace} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton
+              component={Link}
+              to="/furnace/overview"
+              selected={location.pathname.startsWith("/furnace/overview")}
+              sx={{ pl: collapsed ? 2 : 4 }}
+            >
+              <ListItemText primary="Furnace Overview" />
+            </ListItemButton>
+            <ListItemButton
+              component={Link}
+              to="/furnace/hot-blast-flow"
+              selected={location.pathname.startsWith("/furnace/hot-blast-flow")}
+              sx={{ pl: collapsed ? 2 : 4 }}
+            >
+              <ListItemText primary="Hot Blast Flow" />
+            </ListItemButton>
+            <ListItemButton
+              component={Link}
+              to="/furnace/tuyere-nose-system-1"
+              selected={location.pathname.startsWith(
+                "/furnace/tuyere-nose-system-1"
+              )}
+              sx={{ pl: collapsed ? 2 : 4 }}
+            >
+              <ListItemText primary="Tuyere Nose Sys 1" />
+            </ListItemButton>
+            <ListItemButton
+              component={Link}
+              to="/furnace/tuyere-nose-system-2"
+              selected={location.pathname.startsWith(
+                "/furnace/tuyere-nose-system-2"
+              )}
+              sx={{ pl: collapsed ? 2 : 4 }}
+            >
+              <ListItemText primary="Tuyere Nose Sys 2" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+      </ListItem>
+
       {/* ✅ Admin Dashboard */}
-      <ListItem disablePadding sx={{ display: 'block' }}>
+      <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton
           component={Link}
           to="/admin-dashboard"
-          selected={location.pathname === '/admin-dashboard'}
-          sx={{ minHeight: 48, justifyContent: collapsed ? 'center' : 'initial', px: 2.5 }}Add commentMore actions
+          selected={location.pathname === "/admin-dashboard"}
+          sx={{
+            minHeight: 48,
+            justifyContent: collapsed ? "center" : "initial",
+            px: 2.5,
+          }}
+          Add
+          commentMore
+          actions
         >
-          <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 'auto' : 3, justifyContent: 'center' }}>
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: collapsed ? "auto" : 3,
+              justifyContent: "center",
+            }}
+          >
             <DashboardIcon />
           </ListItemIcon>
           <StyledListItemText primary="Admin Dashboard" collapsed={collapsed} />
@@ -141,16 +207,26 @@ function MainSidebar({ collapsed }) {
       </ListItem>
 
       {/* Login/Logout Section */}
-      <ListItem disablePadding sx={{ display: 'block' }}>
+      <ListItem disablePadding sx={{ display: "block" }}>
         {isLoggedIn ? (
           <>
             <ListItemButton
               component={Link}
               to="/signout"
-              selected={location.pathname === '/signout'}
-              sx={{ minHeight: 48, justifyContent: collapsed ? 'center' : 'initial', px: 2.5 }}
+              selected={location.pathname === "/signout"}
+              sx={{
+                minHeight: 48,
+                justifyContent: collapsed ? "center" : "initial",
+                px: 2.5,
+              }}
             >
-              <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 'auto' : 3, justifyContent: 'center' }}>
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: collapsed ? "auto" : 3,
+                  justifyContent: "center",
+                }}
+              >
                 <LogoutIcon />
               </ListItemIcon>
               <StyledListItemText primary="Sign Out" collapsed={collapsed} />
@@ -159,23 +235,46 @@ function MainSidebar({ collapsed }) {
             <ListItemButton
               component={Link}
               to="/reset"
-              selected={location.pathname === '/reset'}
-              sx={{ minHeight: 48, justifyContent: collapsed ? 'center' : 'initial', px: 2.5 }}
+              selected={location.pathname === "/reset"}
+              sx={{
+                minHeight: 48,
+                justifyContent: collapsed ? "center" : "initial",
+                px: 2.5,
+              }}
             >
-              <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 'auto' : 3, justifyContent: 'center' }}>
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: collapsed ? "auto" : 3,
+                  justifyContent: "center",
+                }}
+              >
                 <LockResetIcon />
               </ListItemIcon>
-              <StyledListItemText primary="Reset Password" collapsed={collapsed} />
+              <StyledListItemText
+                primary="Reset Password"
+                collapsed={collapsed}
+              />
             </ListItemButton>
           </>
         ) : (
           <ListItemButton
             component={Link}
             to="/login"
-            selected={location.pathname === '/login'}
-            sx={{ minHeight: 48, justifyContent: collapsed ? 'center' : 'initial', px: 2.5 }}
+            selected={location.pathname === "/login"}
+            sx={{
+              minHeight: 48,
+              justifyContent: collapsed ? "center" : "initial",
+              px: 2.5,
+            }}
           >
-            <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 'auto' : 3, justifyContent: 'center' }}>
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: collapsed ? "auto" : 3,
+                justifyContent: "center",
+              }}
+            >
               <LoginIcon />
             </ListItemIcon>
             <StyledListItemText primary="Login" collapsed={collapsed} />

@@ -28,9 +28,15 @@ export default function AlertTable() {
       <Table aria-label="alerts table">
         <TableHead>
           <TableRow>
-            <TableCell><strong>ID</strong></TableCell>
-            <TableCell><strong>Message</strong></TableCell>
-            <TableCell><strong>Severity</strong></TableCell>
+            <TableCell>
+              <strong>ID</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Message</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Severity</strong>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -39,12 +45,15 @@ export default function AlertTable() {
               <TableCell>{alert.id}</TableCell>
               <TableCell>{alert.message}</TableCell>
               <TableCell>
-                <Chip label={alert.severity} color={severityColor[alert.severity]} />
+                <Chip
+                  label={alert.severity}
+                  color={severityColor[alert.severity]}
+                />
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-  );
+  );
 }
