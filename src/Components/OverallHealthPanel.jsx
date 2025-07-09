@@ -115,7 +115,7 @@ const OverallHealthPanel = () => {
 
       {/* Health Bars */}
       <div style={{ flex: 1 }}>
-        <div style={{ fontWeight: 'bold', fontSize: '18px', marginBottom: '10px' }}>
+        <div style={{ fontWeight: 'bold', fontSize: '18px', marginBottom: '10px', marginRight: '20px' }}>
           Overall Health
         </div>
         {healthData.map((item, i) => (

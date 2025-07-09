@@ -12,22 +12,22 @@ const getStatusColor = (status) => {
 
 const data = {
   operation: [
-    { name: 'Wind Vol', status: 'Good' },
-    { name: 'Top Gas Pre', status: 'Fine' },
-    { name: 'Top Gas Temp', status: 'Good' },
-    { name: 'HBT', status: 'Bad' },
-    { name: 'HBP', status: 'Fine' },
-    { name: 'PCI Rate', status: 'Good' },
-    { name: 'PCI Rate', status: 'Fine' },
+    { name: 'Wind Vol', status: 'Good' , value: 33629.1},
+    { name: 'Top Gas Pre', status: 'Fine' , value: 5.5 },
+    { name: 'Top Gas Temp', status: 'Good', value: 62.0 },
+    { name: 'HBT', status: 'Bad',  value: "5.5°C" },
+    { name: 'HBP', status: 'Fine', value: "45.0 T" },
+    { name: 'PCI Rate', status: 'Good', value: "62.0" },
+    { name: 'PCI Rate', status: 'Fine', value: "62.0" },
   ],
   maintenance: [
-    { name: 'Rotation Angle', status: 'Good' },
-    { name: 'Tilting Angle', status: 'Fine' },
-    { name: 'Gear Box Temp', status: 'Bad' },
-    { name: 'Hopper 1 Wt', status: 'Good' },
-    { name: 'Hopper 2 Wt', status: 'Good' },
-    { name: 'Hydraulic Pre', status: 'Fine' },
-    { name: 'Pump Status', status: 'Bad' },
+    { name: 'Rotation Angle', status: 'Good',value: "201.0°" },
+    { name: 'Tilting Angle', status: 'Fine', value: "180.0°" },
+    { name: 'Gear Box Temp', status: 'Bad', value: "79.0°C" },
+    { name: 'Hopper 1 Wt', status: 'Good', value: "45.0 T" },
+    { name: 'Hopper 2 Wt', status: 'Good', value: "45.0 T" },
+    { name: 'Hydraulic Pre', status: 'Fine',value: "180.0 Bar" },
+    { name: 'Pump Status', status: 'Bad',value: "Inactive" },
   ]
 };
 
@@ -43,6 +43,7 @@ const OperationMaintenanceTable = () => {
             <div key={index} className="flex items-center gap-1">
               <FaCircle style={{ color: getStatusColor(item.status), fontSize: '8px' }} />
               <span>{item.name}</span>
+              <span>- {item.value}</span>
             </div>
           ))}
         </div>
@@ -56,6 +57,7 @@ const OperationMaintenanceTable = () => {
             <div key={index} className="flex items-center gap-1">
               <FaCircle style={{ color: getStatusColor(item.status), fontSize: '8px' }} />
               <span>{item.name}</span>
+              <span>- {item.value}</span>
             </div>
           ))}
         </div>
