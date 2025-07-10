@@ -9,6 +9,7 @@ import {
   styled,
 } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
+
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -16,7 +17,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import ChatIcon from '@mui/icons-material/Chat';
-import TimelineIcon from '@mui/icons-material/Timeline'; // 🆕 Icon
+import TimelineIcon from '@mui/icons-material/Timeline';
+import AssessmentIcon from '@mui/icons-material/Assessment'; // For Overall Status & Health Status
 
 const StyledListItemText = styled(ListItemText, {
   shouldForwardProp: (prop) => prop !== 'collapsed',
@@ -32,9 +34,10 @@ function Sidebar({ collapsed }) {
     { text: 'Home', path: '/', icon: <HomeIcon /> },
     { text: 'BLT', path: '/BLT', icon: <InfoIcon /> },
     { text: 'Charging System', path: '/Charging System', icon: <HomeIcon /> },
+    { text: 'OVERALL STATUS', path: '/overall-status', icon: <AssessmentIcon /> },
+    { text: 'Health Status', path: '/health-status', icon: <AssessmentIcon /> }, // ✅ Added this line
     { text: 'Dashboard', path: '/dashboard', icon: <DashboardIcon /> },
-    { text: 'Asset Timeline', path: '/blast-furnace/bf1/asset-timeline', icon: <TimelineIcon /> }, // ✅ NEW ITEM
-
+    { text: 'Asset Timeline', path: '/blast-furnace/bf1/asset-timeline', icon: <TimelineIcon /> },
     { text: 'Chat Assistant', path: '/chatbot', icon: <ChatIcon /> },
     { text: 'About', path: '/about', icon: <InfoIcon /> },
   ];

@@ -7,6 +7,10 @@ import { Outlet, useLocation } from 'react-router-dom';
 import MainSidebar from './MainSidebar';
 import SectionSidebar from './SectionSidebar';
 
+// ✅ ADD THIS
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
 const drawerWidth = 240;
 const collapsedDrawerWidth = 60;
 
@@ -71,7 +75,6 @@ function Layout() {
     setOpen(!open);
   };
 
-  // Check if route is under BF1, BF2, C1, C2, C3, BOF1, BOF2, BOF3
   const isSectionRoute = [
     '/blast-furnace/bf1',
     '/blast-furnace/bf2',
@@ -84,22 +87,24 @@ function Layout() {
   ].some((path) => location.pathname.startsWith(path));
 
   return (
-    <Box sx={{ display: 'flex', overflowX: 'hidden' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open} sx={{ backgroundColor: '#004C97', zIndex: 1201 }}>
-        <Navbar open={open} handleDrawerToggle={handleDrawerOpen} />
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
-        {isSectionRoute ? (
-          <SectionSidebar collapsed={!open} />
-        ) : (
-          <MainSidebar collapsed={!open} />
-        )}
-      </Drawer>
-      <Main open={open}>
-        <Outlet />
-      </Main>
-    </Box>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Box sx={{ display: 'flex', overflowX: 'hidden' }}>
+        <CssBaseline />
+        <AppBar position="fixed" open={open} sx={{ backgroundColor: '#004C97', zIndex: 1201 }}>
+          <Navbar open={open} handleDrawerToggle={handleDrawerOpen} />
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          {isSectionRoute ? (
+            <SectionSidebar collapsed={!open} />
+          ) : (
+            <MainSidebar collapsed={!open} />
+          )}
+        </Drawer>
+        <Main open={open}>
+          <Outlet />
+        </Main>
+      </Box>
+    </LocalizationProvider>
   );
 }
 
