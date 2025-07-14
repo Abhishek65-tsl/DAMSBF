@@ -7,6 +7,9 @@ import { Outlet, useLocation } from "react-router-dom";
 import MainSidebar from "./MainSidebar";
 import SectionSidebar from "./SectionSidebar";
 
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
 const drawerWidth = 240;
 const collapsedDrawerWidth = 60;
 
@@ -83,6 +86,7 @@ function Layout() {
   ].some((path) => location.pathname.startsWith(path));
 
   return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
     <Box sx={{ height: "100vh", overflowX: "hidden" }}>
       <CssBaseline />
       <Box
@@ -113,6 +117,7 @@ function Layout() {
         </Main>
       </Box>
     </Box>
+    </LocalizationProvider>
   );
 }
 
