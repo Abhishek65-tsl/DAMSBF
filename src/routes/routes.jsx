@@ -17,6 +17,8 @@ import FurnaceOverview from "../Pages/FurnaceOverview";
 import HotBlastfurnace from "../Pages/HotBlast";
 import TuyereNose from "../Pages/TuyereNose";
 import TuyereNose2 from "../Pages/TuyereNose2"; // ✅ Tuyere Nose System 2
+import OverallStatus from "../Pages/OverallStatus";
+import HealthStatus from "../Pages/HealthStatus";
 
 const routes = [
   {
@@ -49,8 +51,13 @@ const routes = [
       { path: "furnace/tuyere-nose-system-1", element: <TuyereNose /> },
       { path: "furnace/tuyere-nose-system-2", element: <TuyereNose2 /> },
 
+      
+
       // Admin Routes
       { path: "admin-dashboard", element: <AdminDashboard /> },
+      { path: "overall-status", element: <OverallStatus /> },
+      { path: "health-status", element: <HealthStatus /> },
+      
       { path: "*", element: <NotFound /> },
     ],
   },
