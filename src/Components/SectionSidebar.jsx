@@ -15,7 +15,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import ChatIcon from "@mui/icons-material/Chat";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import TimelineIcon from "@mui/icons-material/Timeline";
+import TimelineIcon from '@mui/icons-material/Timeline';
+import AssessmentIcon from '@mui/icons-material/Assessment';
 
 function SectionSidebar({ collapsed }) {
   const location = useLocation();
@@ -30,6 +31,8 @@ function SectionSidebar({ collapsed }) {
       path: `${base}/Charging System`,
       icon: <HomeIcon />,
     },
+    { text: 'OVERALL STATUS', path: '/overall-status', icon: <AssessmentIcon /> },
+    { text: 'Health Status', path: '/health-status', icon: <AssessmentIcon /> },  
     { text: "Dashboard", path: `${base}/dashboard`, icon: <DashboardIcon /> },
     {
       text: "Asset Timeline",
