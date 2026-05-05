@@ -1,0 +1,69 @@
+/* ParameterList.module.css */
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 320px;
+  transition: all 0.2s ease;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.row:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  transform: translateY(-1px);
+}
+
+.nameContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.name {
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  color: #333;
+}
+
+.value {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  color: #007acc;
+}
+
+.chartIcon {
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.row:hover .chartIcon {
+  opacity: 1;
+}
+
+.divider {
+  margin: 0 !important;
+}
+
+.chartDialog {
+  backdrop-filter: blur(5px);
+}
+
+.chart {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}

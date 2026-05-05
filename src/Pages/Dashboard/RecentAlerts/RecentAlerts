@@ -1,0 +1,52 @@
+import React from 'react';
+
+const AlertCard = ({ count, type, color }) => {
+  const colorMap = {
+    green: "bg-green-100 text-green-800",
+    yellow: "bg-yellow-100 text-yellow-800", 
+    red: "bg-red-100 text-red-800",
+    blue: "bg-blue-100 text-blue-800"
+  };
+
+  return (
+    <div className={`${colorMap[color]} px-3 py-2 rounded-lg flex items-center gap-2`}>
+      <span className="font-bold text-lg">{count}</span>
+      <span className="text-sm">{type}</span>
+    </div>
+  );
+};
+
+const RecentAlerts = ({ 
+  alerts = [],
+  alertCounts = { total: 654, open: 39, closed: 395, ack: 6 }
+}) => {
+  const defaultAlerts = [
+    "BFT spout time • BF2 spout response time",
+    "CSPT opening time • CSV2 open response time"
+  ];
+
+  const alertsToShow = alerts.length > 0 ? alerts : defaultAlerts;
+
+  return (
+    <div className="bg-white rounded-lg shadow-sm border p-4">
+      <h3 className="font-semibold mb-3 flex items-center gap-2">
+        <span className="w-5 h-5">⚠️</span>
+        Recent Alerts
+      </h3>
+      <div className="space-y-2 text-xs">
+        {alertsToShow.map((alert, index) => (
+          <div key={index} className="text-gray-600">{alert}</div>
+        ))}
+      </div>
+      
+      <div className="grid grid-cols-2 gap-2 mt-4">
+        <AlertCard count={alertCounts.total} type="Total" color="green" />
+        <AlertCard count={alertCounts.open} type="Open" color="yellow" />
+        <AlertCard count={alertCounts.closed} type="Closed" color="red" />
+        <AlertCard count={alertCounts.ack} type="Ack" color="blue" />
+      </div>
+    </div>
+  );
+};
+
+export default RecentAlerts;
