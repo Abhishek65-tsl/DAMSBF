@@ -139,8 +139,6 @@ const IndustrialDashboard = () => {
     },
   ];
 
-  console.log("Selected Parameter:", parameters);
-
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl px-2 mx-auto py-2">

@@ -48,7 +48,6 @@ const InfoCardComponent = ({
     if (progressPercentage > 100) progressPercentage = 100;
   }
 
-  console.log('qaz---title', title)
   return (
     <div
       className={`rounded-lg ${cardSize} shadow-sm border border-gray-200 hover:shadow-md transition-shadow`}
