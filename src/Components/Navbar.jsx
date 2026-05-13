@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-
+  Badge,
   Typography,
   InputBase,
   List,
@@ -11,10 +11,23 @@ import {
   Box,
   Avatar,
   IconButton,
+  Chip,
+  Button,
+  FormControlLabel,
+  Switch,
+  Tooltip,
+  Menu,
+  MenuItem,
+  Stack,
   Toolbar
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import SettingsIcon from '@mui/icons-material/Settings';
+import WifiIcon from '@mui/icons-material/Wifi';
+import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import { styled, alpha } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import routes from '../routes/routes'; // dynamic routes import
@@ -84,9 +97,20 @@ function Navbar({ handleDrawerToggle }) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [myVisits, setMyVisits] = useState(0);
   const [totalVisits, setTotalVisits] = useState(0);
+  const [autoRefresh, setAutoRefresh] = useState(true);
+  const [lastRefresh, setLastRefresh] = useState(new Date());
+  const [alertsAnchor, setAlertsAnchor] = useState(null);
+  const [settingsAnchor, setSettingsAnchor] = useState(null);
+  const [profileAnchor, setProfileAnchor] = useState(null);
   const hasVisitedRef = useRef(false);
   const navigate = useNavigate();
   const userName = 'Lisa Das';
+  const alertsCount = 1;
+
+  const formatRefreshTime = (refreshDate) => {
+    if (!refreshDate) return 'Not synced';
+    return refreshDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };
 
   // Dynamically derive valid pages from routes
   const pages = routes
@@ -105,21 +129,6 @@ function Navbar({ handleDrawerToggle }) {
               .replace(/\b\w/g, l => l.toUpperCase());
       return { name, path };
     });
-
-  // Count visit stats once per session
-  useEffect(() => {
-    if (hasVisitedRef.current) return;
-    hasVisitedRef.current = true;
-
-    const visits = parseInt(localStorage.getItem('myVisits')) || 0;
-    const total = parseInt(localStorage.getItem('totalVisits')) || 0;
-
-    localStorage.setItem('myVisits', visits + 1);
-    localStorage.setItem('totalVisits', total + 1);
-
-    setMyVisits(visits + 1);
-    setTotalVisits(total + 1);
-  }, []);
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
@@ -161,7 +170,7 @@ function Navbar({ handleDrawerToggle }) {
   // };
 
   useEffect(() => {
-    if (hasVisitedRef.current) return; // ✅ prevent multiple calls
+    if (hasVisitedRef.current) return;
     hasVisitedRef.current = true;
 
     const visits = parseInt(localStorage.getItem('myVisits')) || 0;
@@ -194,14 +203,8 @@ function Navbar({ handleDrawerToggle }) {
         </Typography>
       </Box>
 
-      {/* Right: Avatar, stats, search */}
+      {/* Right: Stats, search, BLT controls */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Avatar sx={{ bgcolor: '#fff', color: '#004C97', fontSize: '14px', width: 32, height: 32 }}>
-          {userName?.[0] || 'U'}
-        </Avatar>
-        <Typography variant="body1" sx={{ fontWeight: 500 }}>
-          {userName}
-        </Typography>
         <Typography variant="body2">My Visits: <strong>{myVisits}</strong></Typography>
         <Typography variant="body2">Total Visits: <strong>{totalVisits}</strong></Typography>
 
@@ -233,7 +236,103 @@ function Navbar({ handleDrawerToggle }) {
             )}
           </Search>
         </SearchContainer>
+
+        <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', rowGap: 0.5, alignItems: 'center' }}>
+          <Chip icon={<WifiIcon />} label="PLC Online" color="success" variant="outlined" size="small" />
+          <Chip
+            label="Shift B"
+            variant="outlined"
+            size="small"
+            sx={{ color: '#fff', borderColor: 'rgba(255,255,255,0.45)' }}
+          />
+        </Stack>
+
+        <Tooltip title="Manual refresh">
+          <Button
+            variant="contained"
+            size="small"
+            startIcon={<RefreshIcon />}
+            onClick={() => setLastRefresh(new Date())}
+            sx={{ whiteSpace: 'nowrap' }}
+          >
+            {formatRefreshTime(lastRefresh)}
+          </Button>
+        </Tooltip>
+
+        <FormControlLabel
+          control={
+            <Switch
+              checked={autoRefresh}
+              onChange={(event) => setAutoRefresh(event.target.checked)}
+              size="small"
+            />
+          }
+          label="Auto"
+          sx={{ m: 0, '& .MuiFormControlLabel-label': { fontSize: '0.85rem' } }}
+        />
+
+        <Tooltip title="Alerts">
+          <IconButton color="inherit" onClick={(event) => setAlertsAnchor(event.currentTarget)}>
+            <Badge badgeContent={alertsCount} color="error">
+              <NotificationsActiveIcon />
+            </Badge>
+          </IconButton>
+        </Tooltip>
+
+        <Tooltip title="Operations settings">
+          <IconButton color="inherit" onClick={(event) => setSettingsAnchor(event.currentTarget)}>
+            <SettingsIcon />
+          </IconButton>
+        </Tooltip>
+
+        <Button
+          color="inherit"
+          onClick={(event) => setProfileAnchor(event.currentTarget)}
+          sx={{
+            textTransform: 'none',
+            gap: 1.5,
+            borderRadius: '24px',
+            padding: '4px 8px 4px 16px',
+            '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' }
+          }}
+        >
+          <Typography variant="body2" sx={{ fontWeight: 600, display: { xs: 'none', sm: 'block' } }}>
+            {userName}
+          </Typography>
+          <Avatar sx={{ bgcolor: '#fff', color: '#004C97', fontSize: '14px', width: 32, height: 32 }}>
+            {userName?.[0] || 'U'}
+          </Avatar>
+        </Button>
       </Box>
+
+      <Menu anchorEl={alertsAnchor} open={Boolean(alertsAnchor)} onClose={() => setAlertsAnchor(null)}>
+        <MenuItem>Critical alarms</MenuItem>
+        <MenuItem>Warnings</MenuItem>
+        <MenuItem>Acknowledged events</MenuItem>
+      </Menu>
+
+      <Menu anchorEl={settingsAnchor} open={Boolean(settingsAnchor)} onClose={() => setSettingsAnchor(null)}>
+        <MenuItem>Display preferences</MenuItem>
+        <MenuItem>Alarm filters</MenuItem>
+        <MenuItem>Shift settings</MenuItem>
+      </Menu>
+
+      <Menu anchorEl={profileAnchor} open={Boolean(profileAnchor)} onClose={() => setProfileAnchor(null)}>
+        <MenuItem>
+          <Stack>
+            <Typography variant="subtitle2">{userName}</Typography>
+            <Typography variant="caption" color="text.secondary">
+              Control room operator
+            </Typography>
+          </Stack>
+        </MenuItem>
+        <MenuItem>
+          <AlarmOnIcon fontSize="small" sx={{ mr: 1 }} />
+          Shift handover notes
+        </MenuItem>
+        <MenuItem>Profile settings</MenuItem>
+        <MenuItem>Sign out</MenuItem>
+      </Menu>
     </Toolbar>
 
   );

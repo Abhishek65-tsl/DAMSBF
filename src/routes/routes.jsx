@@ -19,13 +19,23 @@ import TuyereNose from "../Pages/TuyereNose";
 import TuyereNose2 from "../Pages/TuyereNose2"; // ✅ Tuyere Nose System 2
 import OverallStatus from "../Pages/OverallStatus";
 import HealthStatus from "../Pages/HealthStatus";
+import NewBLTHMI from "../Pages/blt/NewBLTHMI";
+import ChargingSystem from "../Pages/blt/ChargingSystem";
+import CoolingSystem from "../Pages/blt/CoolingSystem";
+import ValveSystem from "../Pages/blt/ValveSystem";
+import HydraulicView from "../Pages/blt/HydraulicView";
 
 const routes = [
   {
     path: "/",
     element: <Layout />,
     children: [
-      { path: "", element: <Home /> },
+      { index: true, element: <Home /> },
+      { path: "dams-blt", element: <NewBLTHMI /> },
+      { path: "charging-system", element: <ChargingSystem /> },
+      { path: "cooling-system", element: <CoolingSystem /> },
+      { path: "valve-system", element: <ValveSystem /> },
+      { path: "hydraulic-view", element: <HydraulicView /> },
       { path: "blast-furnace/bf1/", element: <BLT /> },
       { path: "blast-furnace/bf1/BLT", element: <BLT /> },
       { path: "blast-furnace/bf1/about", element: <AboutUs /> }, // ✅ correct usage
@@ -34,7 +44,7 @@ const routes = [
       { path: "blast-furnace/bf1/asset-timeline", element: <AssetTimeline /> },
 
       { path: "blast-furnace/bf2", element: <ComingSoon /> },
-
+                       
       // Caster Routes
       { path: "caster/c1", element: <ComingSoon /> },
       { path: "caster/c2", element: <ComingSoon /> },

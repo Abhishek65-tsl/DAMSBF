@@ -8,6 +8,7 @@ import {
   ListItemText,
   Collapse,
   styled,
+  Tooltip,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import ExpandLess from "@mui/icons-material/ExpandLess";
@@ -19,9 +20,15 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
 import LockResetIcon from "@mui/icons-material/LockReset";
-import WhatshotIcon from '@mui/icons-material/Whatshot';
-import AssessmentIcon from '@mui/icons-material/Assessment'; // Overall Status icon
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety'; // ✅ Health Status icon
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import AssessmentIcon from "@mui/icons-material/Assessment"; // Overall Status icon
+import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety"; // ✅ Health Status icon
+import WaterIcon from "@mui/icons-material/Water";
+import AutoGraphIcon from "@mui/icons-material/AutoGraph";
+import BoltIcon from "@mui/icons-material/Bolt";
+import AcUnitIcon from "@mui/icons-material/AcUnit";
+import SettingsInputComponentIcon from "@mui/icons-material/SettingsInputComponent";
+import OpacityIcon from "@mui/icons-material/Opacity";
 
 const StyledListItemText = styled(ListItemText, {
   shouldForwardProp: (prop) => prop !== "collapsed",
@@ -38,6 +45,7 @@ function MainSidebar({ collapsed }) {
     caster: false,
     bof: false,
     furnace: false,
+    damsBlt: false,
   });
 
   const toggleMenu = (key) => {
@@ -46,10 +54,96 @@ function MainSidebar({ collapsed }) {
 
   return (
     <List>
-      {/* Blast Furnace */}
+      {/* DAMS-BLT */}
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <Tooltip title={collapsed ? "DAMS-BLT" : ""} placement="right" arrow>
+          <ListItemButton onClick={() => toggleMenu("damsBlt")}>
+            <ListItemIcon>
+              <WaterIcon />
+            </ListItemIcon>
+
+            {!collapsed && <ListItemText primary="DAMS-BLT" />}
+
+            {!collapsed && (openMenus.damsBlt ? <ExpandLess /> : <ExpandMore />)}
+          </ListItemButton>
+        </Tooltip>
+
+        <Collapse in={openMenus.damsBlt} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <Tooltip title={collapsed ? "Overview" : ""} placement="right" arrow>
+              <ListItemButton
+                component={Link}
+                to="/dams-blt"
+                selected={location.pathname.startsWith("/dams-blt")}
+                sx={{ pl: collapsed ? 2 : 4 }}
+              >
+                <ListItemIcon>
+                  <AutoGraphIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Overview" />
+              </ListItemButton>
+            </Tooltip>
+            <Tooltip title={collapsed ? "Charging System" : ""} placement="right" arrow>
+              <ListItemButton
+                component={Link}
+                to="/charging-system"
+                selected={location.pathname.startsWith("/charging-system")}
+                sx={{ pl: collapsed ? 2 : 4 }}
+              >
+                <ListItemIcon>
+                  <BoltIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Charging System" />
+              </ListItemButton>
+            </Tooltip>
+            <Tooltip title={collapsed ? "Cooling System" : ""} placement="right" arrow>
+              <ListItemButton
+                component={Link}
+                to="/cooling-system"
+                selected={location.pathname.startsWith("/cooling-system")}
+                sx={{ pl: collapsed ? 2 : 4 }}
+              >
+                <ListItemIcon>
+                  <AcUnitIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Cooling System" />
+              </ListItemButton>
+            </Tooltip>
+            <Tooltip title={collapsed ? "Valve System" : ""} placement="right" arrow>
+              <ListItemButton
+                component={Link}
+                to="/valve-system"
+                selected={location.pathname.startsWith("/valve-system")}
+                sx={{ pl: collapsed ? 2 : 4 }}
+              >
+                <ListItemIcon>
+                  <SettingsInputComponentIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Valve System" />
+              </ListItemButton>
+            </Tooltip>
+            <Tooltip title={collapsed ? "Hydraulic View" : ""} placement="right" arrow>
+              <ListItemButton
+                component={Link}
+                to="/hydraulic-view"
+                selected={location.pathname.startsWith("/hydraulic-view")}
+                sx={{ pl: collapsed ? 2 : 4 }}
+              >
+                <ListItemIcon>
+                  <OpacityIcon fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="Hydraulic View" />
+              </ListItemButton>
+            </Tooltip>
+          </List>
+        </Collapse>
+      </ListItem>
+       {/* Blast Furnace */}
       <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton onClick={() => toggleMenu("bf")}>
-          <ListItemIcon><FactoryIcon /></ListItemIcon>
+          <ListItemIcon>
+            <FactoryIcon />
+          </ListItemIcon>
           {!collapsed && <ListItemText primary="Blast Furnace" />}
           {!collapsed && (openMenus.bf ? <ExpandLess /> : <ExpandMore />)}
         </ListItemButton>
@@ -74,11 +168,12 @@ function MainSidebar({ collapsed }) {
           </List>
         </Collapse>
       </ListItem>
-
       {/* Caster */}
       <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton onClick={() => toggleMenu("caster")}>
-          <ListItemIcon><PrecisionManufacturingIcon /></ListItemIcon>
+          <ListItemIcon>
+            <PrecisionManufacturingIcon />
+          </ListItemIcon>
           {!collapsed && <ListItemText primary="Caster" />}
           {!collapsed && (openMenus.caster ? <ExpandLess /> : <ExpandMore />)}
         </ListItemButton>
@@ -98,11 +193,12 @@ function MainSidebar({ collapsed }) {
           </List>
         </Collapse>
       </ListItem>
-
       {/* BOF */}
       <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton onClick={() => toggleMenu("bof")}>
-          <ListItemIcon><BuildIcon /></ListItemIcon>
+          <ListItemIcon>
+            <BuildIcon />
+          </ListItemIcon>
           {!collapsed && <ListItemText primary="BOF" />}
           {!collapsed && (openMenus.bof ? <ExpandLess /> : <ExpandMore />)}
         </ListItemButton>
@@ -122,7 +218,6 @@ function MainSidebar({ collapsed }) {
           </List>
         </Collapse>
       </ListItem>
-
       {/* Furnace */}
       <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton onClick={() => toggleMenu("furnace")}>
@@ -154,7 +249,7 @@ function MainSidebar({ collapsed }) {
               component={Link}
               to="/furnace/tuyere-nose-system-1"
               selected={location.pathname.startsWith(
-                "/furnace/tuyere-nose-system-1"
+                "/furnace/tuyere-nose-system-1",
               )}
               sx={{ pl: collapsed ? 2 : 4 }}
             >
@@ -164,7 +259,7 @@ function MainSidebar({ collapsed }) {
               component={Link}
               to="/furnace/tuyere-nose-system-2"
               selected={location.pathname.startsWith(
-                "/furnace/tuyere-nose-system-2"
+                "/furnace/tuyere-nose-system-2",
               )}
               sx={{ pl: collapsed ? 2 : 4 }}
             >
@@ -173,7 +268,6 @@ function MainSidebar({ collapsed }) {
           </List>
         </Collapse>
       </ListItem>
-
       {/* ✅ Admin Dashboard */}
       <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton
@@ -201,38 +295,54 @@ function MainSidebar({ collapsed }) {
           <StyledListItemText primary="Admin Dashboard" collapsed={collapsed} />
         </ListItemButton>
       </ListItem>
-
       {/* ✅ OVERALL STATUS */}
-      <ListItem disablePadding sx={{ display: 'block' }}>
+      <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton
           component={Link}
           to="/overall-status"
-          selected={location.pathname === '/overall-status'}
-          sx={{ minHeight: 48, justifyContent: collapsed ? 'center' : 'initial', px: 2.5 }}
+          selected={location.pathname === "/overall-status"}
+          sx={{
+            minHeight: 48,
+            justifyContent: collapsed ? "center" : "initial",
+            px: 2.5,
+          }}
         >
-          <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 'auto' : 3, justifyContent: 'center' }}>
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: collapsed ? "auto" : 3,
+              justifyContent: "center",
+            }}
+          >
             <AssessmentIcon />
           </ListItemIcon>
           <StyledListItemText primary="Overall Status" collapsed={collapsed} />
         </ListItemButton>
       </ListItem>
-
       {/* ✅ HEALTH STATUS */}
-      <ListItem disablePadding sx={{ display: 'block' }}>
+      <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton
           component={Link}
           to="/health-status"
-          selected={location.pathname === '/health-status'}
-          sx={{ minHeight: 48, justifyContent: collapsed ? 'center' : 'initial', px: 2.5 }}
+          selected={location.pathname === "/health-status"}
+          sx={{
+            minHeight: 48,
+            justifyContent: collapsed ? "center" : "initial",
+            px: 2.5,
+          }}
         >
-          <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 'auto' : 3, justifyContent: 'center' }}>
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: collapsed ? "auto" : 3,
+              justifyContent: "center",
+            }}
+          >
             <HealthAndSafetyIcon />
           </ListItemIcon>
           <StyledListItemText primary="Health Status" collapsed={collapsed} />
         </ListItemButton>
       </ListItem>
-
-
       {/* Login/Logout Section */}
       <ListItem disablePadding sx={{ display: "block" }}>
         {isLoggedIn ? (
