@@ -125,7 +125,6 @@ const faceTone = {
   critical: { bg: "rgba(239, 68, 68, 0.24)", color: "#991b1b", valueColor: "#dc2626" },
 };
 
-const formatValue = (value, suffix = "") => `${Number(value).toFixed(1)}${suffix}`;
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
 const getFaceKey = (strandKey, faceLabel) => `${strandKey}:${faceLabel}`;

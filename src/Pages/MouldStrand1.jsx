@@ -23,9 +23,6 @@ const initialRange = () => {
   };
 };
 
-const formatValue = (value, unit = "", digits = 1) =>
-  typeof value === "number" ? `${value.toFixed(digits)}${unit}` : "NA";
-
 function StatCard({ label, value, onClick, ui = {} }) {
   return (
     <button type="button" onClick={onClick} style={{ ...styles.statCard, ...ui.statCard }}>
