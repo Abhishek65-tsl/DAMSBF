@@ -38,7 +38,7 @@ function SectionSidebar({ collapsed }) {
       text: "Asset Timeline",
       path: `${base}/asset-timeline`,
       icon: <TimelineIcon />,
-    }, // ✅ NEW ITEM
+    }, // âœ… NEW ITEM
     {
       text: "Media Gallery",
       path: `/${location.pathname.split("/")[1]}/${

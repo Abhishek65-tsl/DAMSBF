@@ -215,7 +215,7 @@ function Navbar({ handleDrawerToggle }) {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search"
               value={searchQuery}
               onChange={handleSearchChange}
               onKeyDown={handleKeyDown}
@@ -339,4 +339,3 @@ function Navbar({ handleDrawerToggle }) {
 }
 
 export default Navbar;
-
