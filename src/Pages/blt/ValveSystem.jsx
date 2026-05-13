@@ -637,16 +637,6 @@ function formatMetric(value) {
   return Number(value).toFixed(1);
 }
 
-function findById(items, id) {
-  return items.find((item) => String(item.id) === String(id));
-}
-
-function percentWidth(value, multiplier = 1) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) return "0%";
-  return `${Math.min(Math.max(number * multiplier, 0), 100)}%`;
-}
-
 function palette(index) {
   const colors = [
     "linear-gradient(90deg, #ff6b6b, #fb7185)",

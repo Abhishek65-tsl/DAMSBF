@@ -107,7 +107,7 @@ export default function CoolingSystem() {
   const rightSideMetrics = useMemo(() => rightMetricsConfig, []);
 
   const [latestByTag, setLatestByTag] = useState({});
-  const [avgByTag, setAvgByTag] = useState({});
+  const [, setAvgByTag] = useState({});
   const [hydPressure, setHydPressure] = useState("NA");
   const [pumpStatus, setPumpStatus] = useState("PUMP-1");
   const [alarmCounts, setAlarmCounts] = useState({
@@ -118,8 +118,8 @@ export default function CoolingSystem() {
   });
   const [recentAlarms, setRecentAlarms] = useState({ first: "", second: "" });
   const [equipmentHealthText, setEquipmentHealthText] = useState("");
-  const [selectedTagForTrend, setSelectedTagForTrend] = useState(null);
-  const [selectedCompliance, setSelectedCompliance] = useState(null);
+  const [, setSelectedTagForTrend] = useState(null);
+  const [, setSelectedCompliance] = useState(null);
 
   const postJson = useCallback(async (url, body) => {
     const res = await fetch(url, {
