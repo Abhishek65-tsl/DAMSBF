@@ -21,7 +21,13 @@ import LoginIcon from "@mui/icons-material/Login";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import AssessmentIcon from '@mui/icons-material/Assessment'; // Overall Status icon
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety'; // ✅ Health Status icon
+import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety'; //  Health Status icon
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";// HFC
+import AcUnitIcon from "@mui/icons-material/AcUnit";  // Mould cooling 
+import LinearScaleIcon from "@mui/icons-material/LinearScale";   // Mould strand
+import EngineeringIcon from "@mui/icons-material/Engineering"; //NewMouldPage
+import BlockIcon from "@mui/icons-material/Block"; //Slabstuck
+import AppsIcon from "@mui/icons-material/Apps"; //DAMS Caster
 
 const StyledListItemText = styled(ListItemText, {
   shouldForwardProp: (prop) => prop !== "collapsed",
@@ -38,6 +44,7 @@ function MainSidebar({ collapsed }) {
     caster: false,
     bof: false,
     furnace: false,
+     damsCaster: false,
   });
 
   const toggleMenu = (key) => {
@@ -123,6 +130,88 @@ function MainSidebar({ collapsed }) {
         </Collapse>
       </ListItem>
 
+      {/* 🔥 DAMS Caster */}
+<ListItem disablePadding sx={{ display: "block" }}>
+  <ListItemButton onClick={() => toggleMenu("damsCaster")}>
+    <ListItemIcon>
+  <AppsIcon />
+</ListItemIcon>
+    {!collapsed && <ListItemText primary="DAMS Caster" />}
+    {!collapsed && (openMenus.damsCaster ? <ExpandLess /> : <ExpandMore />)}
+  </ListItemButton>
+
+  <Collapse in={openMenus.damsCaster} timeout="auto" unmountOnExit>
+    <List component="div" disablePadding>
+
+      {/* HFC */}
+      <ListItemButton
+        component={Link}
+        to="/hfc"
+        selected={location.pathname === "/hfc"}
+        sx={{ pl: collapsed ? 2 : 4 }}
+      >
+        <ListItemIcon>
+          <LocalFireDepartmentIcon sx={{ color: "#f97316" }} />
+        </ListItemIcon>
+        <ListItemText primary="H_F_C" />
+      </ListItemButton>
+
+      {/* Mould Cooling */}
+      <ListItemButton
+        component={Link}
+        to="/mouldCooling"
+        selected={location.pathname === "/mouldCooling"}
+        sx={{ pl: collapsed ? 2 : 4 }}
+      >
+        <ListItemIcon>
+          <AcUnitIcon sx={{ color: "#00bcd4" }} />
+        </ListItemIcon>
+        <ListItemText primary="MouldCooling" />
+      </ListItemButton>
+
+      {/* Mould Strand */}
+      <ListItemButton
+        component={Link}
+        to="/mouldStrand"
+        selected={location.pathname === "/mouldStrand"}
+        sx={{ pl: collapsed ? 2 : 4 }}
+      >
+        <ListItemIcon>
+          <LinearScaleIcon />
+        </ListItemIcon>
+        <ListItemText primary="MouldStrand1" />
+      </ListItemButton>
+
+      {/* New Mould Page */}
+      <ListItemButton
+        component={Link}
+        to="/newMouldPage"
+        selected={location.pathname === "/newMouldPage"}
+        sx={{ pl: collapsed ? 2 : 4 }}
+      >
+        <ListItemIcon>
+          <EngineeringIcon />
+        </ListItemIcon>
+        <ListItemText primary="NewMouldPage" />
+      </ListItemButton>
+
+      {/* Slab Stuck */}
+      <ListItemButton
+        component={Link}
+        to="/slabStuck"
+        selected={location.pathname === "/slabStuck"}
+        sx={{ pl: collapsed ? 2 : 4 }}
+      >
+        <ListItemIcon>
+          <BlockIcon />
+        </ListItemIcon>
+        <ListItemText primary="Slabstuck" />
+      </ListItemButton>
+
+    </List>
+  </Collapse>
+</ListItem>
+
       {/* Furnace */}
       <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton onClick={() => toggleMenu("furnace")}>
@@ -174,7 +263,7 @@ function MainSidebar({ collapsed }) {
         </Collapse>
       </ListItem>
 
-      {/* ✅ Admin Dashboard */}
+      {/* Admin Dashboard */}
       <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton
           component={Link}
@@ -202,7 +291,7 @@ function MainSidebar({ collapsed }) {
         </ListItemButton>
       </ListItem>
 
-      {/* ✅ OVERALL STATUS */}
+      {/* OVERALL STATUS */}
       <ListItem disablePadding sx={{ display: 'block' }}>
         <ListItemButton
           component={Link}
@@ -217,7 +306,7 @@ function MainSidebar({ collapsed }) {
         </ListItemButton>
       </ListItem>
 
-      {/* ✅ HEALTH STATUS */}
+      {/*  HEALTH STATUS */}
       <ListItem disablePadding sx={{ display: 'block' }}>
         <ListItemButton
           component={Link}
@@ -308,7 +397,14 @@ function MainSidebar({ collapsed }) {
           </ListItemButton>
         )}
       </ListItem>
+
+  <List sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+
+ </List>
+
+
     </List>
+      
   );
 }
 

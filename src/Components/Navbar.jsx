@@ -86,7 +86,7 @@ function Navbar({ handleDrawerToggle }) {
   const [totalVisits, setTotalVisits] = useState(0);
   const hasVisitedRef = useRef(false);
   const navigate = useNavigate();
-  const userName = 'Lisa Das';
+  const userName = 'Sachin Kumar';
 
   // Dynamically derive valid pages from routes
   const pages = routes
@@ -161,7 +161,7 @@ function Navbar({ handleDrawerToggle }) {
   // };
 
   useEffect(() => {
-    if (hasVisitedRef.current) return; // ✅ prevent multiple calls
+    if (hasVisitedRef.current) return; // prevent multiple calls
     hasVisitedRef.current = true;
 
     const visits = parseInt(localStorage.getItem('myVisits')) || 0;
@@ -212,7 +212,7 @@ function Navbar({ handleDrawerToggle }) {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search"
               value={searchQuery}
               onChange={handleSearchChange}
               onKeyDown={handleKeyDown}
@@ -240,4 +240,3 @@ function Navbar({ handleDrawerToggle }) {
 }
 
 export default Navbar;
-
