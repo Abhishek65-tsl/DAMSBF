@@ -138,7 +138,7 @@ function MainSidebar({ collapsed }) {
           </List>
         </Collapse>
       </ListItem>
-       {/* Blast Furnace */}
+      {/* Blast Furnace */}
       <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton onClick={() => toggleMenu("bf")}>
           <ListItemIcon>
