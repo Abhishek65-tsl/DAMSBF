@@ -8,8 +8,10 @@ function AppRoutes() {
 }
 
 function App() {
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+
   return (
-    <Router basename="/DAMSBF">
+    <Router basename={basename}>
       <AppRoutes />
     </Router>
   );

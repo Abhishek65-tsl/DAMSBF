@@ -9,7 +9,7 @@ import {
   fetchCoolingHealthMock,
   fetchCoolingMoComplianceMock,
   fetchCoolingTrendMock
-} from "./coolingSystemMockData";
+} from "./bltApi";
 
 function getStyles(theme) {
   return `

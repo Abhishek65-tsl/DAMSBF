@@ -9,7 +9,7 @@ import {
   fetchChargingHealthMock,
   fetchChargingMoComplianceMock,
   fetchChargingTrendMock
-} from "./chargingSystemMockData";
+} from "./bltApi";
 
 function getStyles(theme) {
   return `

@@ -9,7 +9,7 @@ import {
   fetchValveHealthMock,
   fetchValveMoComplianceMock,
   fetchValveTrendMock
-} from "./valveSystemMockData";
+} from "./bltApi";
 
 function getStyles(theme) {
   return `

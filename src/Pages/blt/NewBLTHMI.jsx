@@ -10,7 +10,7 @@ import {
   fetchBLTMoComplianceMock,
   fetchBLTSectionHealthMock,
   fetchBLTTrendMock
-} from "./newBLTHMIMockData";
+} from "./bltApi";
 
 function getStyles(theme) {
   return `
