@@ -8,7 +8,7 @@ function AppRoutes() {
 
 function App() {
   return (
-    <Router basename="/DAMSBF">
+    <Router basename={import.meta.env.BASE_URL}>
       <AppRoutes />
     </Router>
   );

@@ -29,6 +29,7 @@ import MouldCooling from "../Pages/MouldCooling";
 import MouldStrand1 from "../Pages/MouldStrand1";
 import NewMouldPage from "../Pages/NewMouldPage";
 import Slabstuck from "../Pages/Slabstuck";
+import AIMachineHealthDashboard from "../Pages/AIMachineHealth/AIMachineHealthDashboard";
 
 const routes = [
   {
@@ -82,6 +83,7 @@ const routes = [
       { path: "admin-dashboard", element: <AdminDashboard /> },
       { path: "overall-status", element: <OverallStatus /> },
       { path: "health-status", element: <HealthStatus /> },
+      { path: "ai-dashboard", element: <AIMachineHealthDashboard /> },
       
       { path: "*", element: <NotFound /> },
     ],

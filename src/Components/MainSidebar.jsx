@@ -29,8 +29,8 @@ import OpacityIcon from "@mui/icons-material/Opacity";
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import AssessmentIcon from '@mui/icons-material/Assessment'; // Overall Status icon
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety'; //  Health Status icon
+import SmartToyIcon from "@mui/icons-material/SmartToy";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";// HFC
-import AcUnitIcon from "@mui/icons-material/AcUnit";  // Mould cooling 
 import LinearScaleIcon from "@mui/icons-material/LinearScale";   // Mould strand
 import EngineeringIcon from "@mui/icons-material/Engineering"; //NewMouldPage
 import BlockIcon from "@mui/icons-material/Block"; //Slabstuck
@@ -145,7 +145,7 @@ function MainSidebar({ collapsed }) {
           </List>
         </Collapse>
       </ListItem>
-       {/* Blast Furnace */}
+      {/* Blast Furnace */}
       <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton onClick={() => toggleMenu("bf")}>
           <ListItemIcon>
@@ -370,9 +370,6 @@ function MainSidebar({ collapsed }) {
             justifyContent: collapsed ? "center" : "initial",
             px: 2.5,
           }}
-          Add
-          commentMore
-          actions
         >
           <ListItemIcon
             sx={{
@@ -432,6 +429,29 @@ function MainSidebar({ collapsed }) {
             <HealthAndSafetyIcon />
           </ListItemIcon>
           <StyledListItemText primary="Health Status" collapsed={collapsed} />
+        </ListItemButton>
+      </ListItem>
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton
+          component={Link}
+          to="/ai-dashboard"
+          selected={location.pathname === "/ai-dashboard"}
+          sx={{
+            minHeight: 48,
+            justifyContent: collapsed ? "center" : "initial",
+            px: 2.5,
+          }}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: collapsed ? "auto" : 3,
+              justifyContent: "center",
+            }}
+          >
+            <SmartToyIcon />
+          </ListItemIcon>
+          <StyledListItemText primary="AI Dashboard" collapsed={collapsed} />
         </ListItemButton>
       </ListItem>
       {/* Login/Logout Section */}

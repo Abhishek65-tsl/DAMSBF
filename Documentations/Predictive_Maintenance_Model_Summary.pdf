@@ -1,0 +1,106 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 2422 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 792 Tm (Predictive Maintenance Model - Point-wise Summary) Tj
+1 0 0 1 50 776 Tm () Tj
+1 0 0 1 50 760 Tm (1. Project Purpose) Tj
+1 0 0 1 50 744 Tm (- Predictive maintenance for equipment health monitoring.) Tj
+1 0 0 1 50 728 Tm (- Current implementation is focused on motor scenario.) Tj
+1 0 0 1 50 712 Tm () Tj
+1 0 0 1 50 696 Tm (2. Programming Language Used) Tj
+1 0 0 1 50 680 Tm (- Backend/ML: Python) Tj
+1 0 0 1 50 664 Tm (- Frontend/UI: JavaScript \(React\)) Tj
+1 0 0 1 50 648 Tm () Tj
+1 0 0 1 50 632 Tm (3. ML Model Used) Tj
+1 0 0 1 50 616 Tm (- Model: Logistic Regression \(scikit-learn\)) Tj
+1 0 0 1 50 600 Tm (- Type: Binary classification \(Failure vs No Failure\)) Tj
+1 0 0 1 50 584 Tm () Tj
+1 0 0 1 50 568 Tm (4. Input Parameters \(Time-Series\)) Tj
+1 0 0 1 50 552 Tm (- Torque) Tj
+1 0 0 1 50 536 Tm (- Pressure) Tj
+1 0 0 1 50 520 Tm (- Temperature) Tj
+1 0 0 1 50 504 Tm (- Minimum 10 points required per parameter.) Tj
+1 0 0 1 50 488 Tm () Tj
+1 0 0 1 50 472 Tm (5. Data Used) Tj
+1 0 0 1 50 456 Tm (- Dummy/simulated correlated time-series data for training/demo.) Tj
+1 0 0 1 50 440 Tm (- Training sample generation includes trends, noise, and drift.) Tj
+1 0 0 1 50 424 Tm () Tj
+1 0 0 1 50 408 Tm (6. Feature Engineering) Tj
+1 0 0 1 50 392 Tm (- Mean, standard deviation, slope \(start vs end\),) Tj
+1 0 0 1 50 376 Tm (  and parameter correlations are extracted.) Tj
+1 0 0 1 50 360 Tm () Tj
+1 0 0 1 50 344 Tm (7. Correlation Handling) Tj
+1 0 0 1 50 328 Tm (- Correlation matrix is computed among torque, pressure, temperature.) Tj
+1 0 0 1 50 312 Tm (- Exposed through API summary endpoint.) Tj
+1 0 0 1 50 296 Tm () Tj
+1 0 0 1 50 280 Tm (8. API Endpoints) Tj
+1 0 0 1 50 264 Tm (- GET /predictive-maintenance/summary) Tj
+1 0 0 1 50 248 Tm (- GET /predictive-maintenance/sample-data) Tj
+1 0 0 1 50 232 Tm (- POST /predictive-maintenance/predict) Tj
+1 0 0 1 50 216 Tm (- POST /predict \(now supports both generic and time-series format\)) Tj
+1 0 0 1 50 200 Tm () Tj
+1 0 0 1 50 184 Tm (9. Output from Prediction) Tj
+1 0 0 1 50 168 Tm (- predictedFailure \(true/false\)) Tj
+1 0 0 1 50 152 Tm (- failureProbability \(0 to 1\)) Tj
+1 0 0 1 50 136 Tm (- healthScore \(0 to 100\)) Tj
+1 0 0 1 50 120 Tm (- recommendedAction \(maintenance guidance\)) Tj
+1 0 0 1 50 104 Tm () Tj
+1 0 0 1 50 88 Tm (10. Frontend Integration) Tj
+1 0 0 1 50 72 Tm (- AI dashboard consumes summary + prediction APIs.) Tj
+ET
+endstream
+endobj
+3 0 obj
+<< /Length 726 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 792 Tm (- Search-based detail card with auto-scroll and trend visibility.) Tj
+1 0 0 1 50 776 Tm () Tj
+1 0 0 1 50 760 Tm (11. Current Scope and Limitation) Tj
+1 0 0 1 50 744 Tm (- Production model currently tuned for motor-type behavior.) Tj
+1 0 0 1 50 728 Tm (- For other equipment, dedicated parameter mapping/training is needed.) Tj
+1 0 0 1 50 712 Tm () Tj
+1 0 0 1 50 696 Tm (12. Deployment/Run Basics) Tj
+1 0 0 1 50 680 Tm (- Backend: uvicorn api.api:app --reload --host 127.0.0.1 --port 8000) Tj
+1 0 0 1 50 664 Tm (- Frontend: npm run dev) Tj
+1 0 0 1 50 648 Tm (- API docs: http://127.0.0.1:8000/docs) Tj
+1 0 0 1 50 632 Tm () Tj
+1 0 0 1 50 616 Tm (Prepared for external technical discussion.) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 3 0 R >>
+endobj
+6 0 obj
+<< /Type /Pages /Count 2 /Kids [ 4 0 R 5 0 R ] >>
+endobj
+7 0 obj
+<< /Type /Catalog /Pages 6 0 R >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000085 00000 n 
+0000002559 00000 n 
+0000003336 00000 n 
+0000003462 00000 n 
+0000003588 00000 n 
+0000003653 00000 n 
+trailer
+<< /Size 8 /Root 7 0 R >>
+startxref
+3702
+%%EOF
