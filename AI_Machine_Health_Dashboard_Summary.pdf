@@ -1,0 +1,141 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 2407 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 792 Tm
+(AI MACHINE HEALTH DASHBOARD - GUIDE SUMMARY) Tj
+0 -14 Td () Tj
+0 -14 Td (Project Page Created) Tj
+0 -14 Td (- Page Name: AI Machine Health Dashboard) Tj
+0 -14 Td (- Route: /ai-dashboard) Tj
+0 -14 Td (- Main File: src/Pages/AIMachineHealth/AIMachineHealthDashboard.jsx) Tj
+0 -14 Td (- Sidebar integrated: AI Dashboard entry added) Tj
+0 -14 Td () Tj
+0 -14 Td (What the AI Module Does) Tj
+0 -14 Td (- Real-time machine health monitoring) Tj
+0 -14 Td (- Failure risk prediction using:) Tj
+0 -14 Td (  temperature, pressure, vibration, spindle speed, current consumption,) Tj
+0 -14 Td (  wind speed, battery degradation) Tj
+0 -14 Td (- Detects and flags:) Tj
+0 -14 Td (  overheating, tool damage, gearbox failure, full system issue,) Tj
+0 -14 Td (  crack detection \(placeholder classifier\)) Tj
+0 -14 Td (- Future risk forecast:) Tj
+0 -14 Td (  next 1h, 24h, 7d risks with confidence) Tj
+0 -14 Td (- Health status classification:) Tj
+0 -14 Td (  Healthy / Warning / Critical) Tj
+0 -14 Td (- AI assistant insights + recommendation actions) Tj
+0 -14 Td (- Equipment search with full related details) Tj
+0 -14 Td () Tj
+0 -14 Td (AI Approach Used) Tj
+0 -14 Td (Hybrid pipeline:) Tj
+0 -14 Td (1\) API Inference Mode:) Tj
+0 -14 Td (   If VITE_AI_MACHINE_HEALTH_API_URL is connected, frontend calls backend) Tj
+0 -14 Td (   for prediction/inference.) Tj
+0 -14 Td (2\) Local Fallback AI Mode:) Tj
+0 -14 Td (   Rule-based inference engine + synthetic telemetry provider, used when) Tj
+0 -14 Td (   backend is unavailable.) Tj
+0 -14 Td () Tj
+0 -14 Td (This makes the module reliable both online and offline.) Tj
+0 -14 Td () Tj
+0 -14 Td (Core AI Logic) Tj
+0 -14 Td (- Anomaly detection \(threshold + trend behavior\)) Tj
+0 -14 Td (- Failure classification \(status/severity mapping\)) Tj
+0 -14 Td (- Future failure projection with confidence) Tj
+0 -14 Td (- Health score computation \(0-100\)) Tj
+0 -14 Td (- Recommendation generation) Tj
+0 -14 Td () Tj
+0 -14 Td (Primary Output JSON Shape) Tj
+0 -14 Td (- healthScore) Tj
+0 -14 Td (- currentStatus) Tj
+0 -14 Td (- anomalies[]) Tj
+0 -14 Td (- alerts[]) Tj
+0 -14 Td (- predictedFailures[]) Tj
+0 -14 Td (- recommendations[]) Tj
+0 -14 Td (- lastUpdated) Tj
+0 -14 Td () Tj
+0 -14 Td (Key Frontend Files) Tj
+0 -14 Td (- src/Pages/AIMachineHealth/AIMachineHealthDashboard.jsx) Tj
+0 -14 Td (- src/Pages/AIMachineHealth/useMachineHealthData.js) Tj
+ET
+endstream
+endobj
+3 0 obj
+<< /Length 1982 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 792 Tm
+(- src/Pages/AIMachineHealth/AIMachineHealthDashboard.css) Tj
+0 -14 Td () Tj
+0 -14 Td (AI Components) Tj
+0 -14 Td (- src/Components/AIMachineHealth/HealthCard.jsx) Tj
+0 -14 Td (- src/Components/AIMachineHealth/SensorChart.jsx) Tj
+0 -14 Td (- src/Components/AIMachineHealth/SensorGraphModal.jsx) Tj
+0 -14 Td (- src/Components/AIMachineHealth/HealthScoreGauge.jsx) Tj
+0 -14 Td (- src/Components/AIMachineHealth/FailureForecast.jsx) Tj
+0 -14 Td (- src/Components/AIMachineHealth/EventTimeline.jsx) Tj
+0 -14 Td (- src/Components/AIMachineHealth/AIAssistantPanel.jsx) Tj
+0 -14 Td (- src/Components/AIMachineHealth/AlertTable.jsx) Tj
+0 -14 Td () Tj
+0 -14 Td (Service / AI Layer Files) Tj
+0 -14 Td (- src/Services/AIMachineHealth/machineHealthService.js) Tj
+0 -14 Td (- src/Services/AIMachineHealth/ruleEngine.js) Tj
+0 -14 Td (- src/Services/AIMachineHealth/schema.js) Tj
+0 -14 Td (- src/Services/AIMachineHealth/mockProvider.js) Tj
+0 -14 Td (- src/Services/AIMachineHealth/constants.js) Tj
+0 -14 Td () Tj
+0 -14 Td (Optional Python Backend Files) Tj
+0 -14 Td (- ai/api/machine_health_api.py) Tj
+0 -14 Td (- ai/model/machine_health_engine.py) Tj
+0 -14 Td () Tj
+0 -14 Td (Highlights Added in UI) Tj
+0 -14 Td (- Animated/glow sensor lines with gradient fills) Tj
+0 -14 Td (- Modal graph view per sensor \(Open graph\)) Tj
+0 -14 Td (- KPI cards with trend sparklines and arrows) Tj
+0 -14 Td (- AI alert intelligence cards \(interactive diagnostics/recommendation\)) Tj
+0 -14 Td (- AI insight panel with Ask AI and Voice state) Tj
+0 -14 Td (- Compact bottom widgets \(CPU, latency, uptime, etc.\)) Tj
+0 -14 Td (- Equipment Condition Search with full detail drilldown) Tj
+0 -14 Td () Tj
+0 -14 Td (Validation Status) Tj
+0 -14 Td (- Lint checks passed after implementation iterations) Tj
+0 -14 Td (- Dark mode and light mode compatibility handled) Tj
+0 -14 Td (- API + fallback behavior supported) Tj
+0 -14 Td () Tj
+0 -14 Td (Generated on: 2026-05-21 17:47:33) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 3 0 R >>
+endobj
+6 0 obj
+<< /Type /Pages /Kids [4 0 R 5 0 R] /Count 2 >>
+endobj
+7 0 obj
+<< /Type /Catalog /Pages 6 0 R >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000085 00000 n 
+0000002544 00000 n 
+0000004578 00000 n 
+0000004704 00000 n 
+0000004830 00000 n 
+0000004893 00000 n 
+trailer
+<< /Size 8 /Root 7 0 R >>
+startxref
+4942
+%%EOF
