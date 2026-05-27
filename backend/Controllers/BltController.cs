@@ -1,9 +1,11 @@
 using backend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/blt")]
 public class BltController : ControllerBase
 {
