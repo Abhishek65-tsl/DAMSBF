@@ -7,6 +7,8 @@ const SignOutPage = () => {
 
   const handleConfirm = () => {
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('authTokenExpiresAt');
     navigate('/signedout');
   };
 

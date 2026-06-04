@@ -2,14 +2,20 @@
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 const REQUEST_TIMEOUT_MS = 8000;
 
+function getAuthToken() {
+  return localStorage.getItem('authToken');
+}
+
 export async function fetchData(endpoint, options = {}) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  const token = getAuthToken();
 
   try {
     const response = await fetch(`${API_URL}/${endpoint}`, {
       headers: {
         'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...options.headers,
       },
       ...options,
